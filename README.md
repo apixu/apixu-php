@@ -1,6 +1,6 @@
 apixu.com-PHP-Api
 ======================
-A php api to parse weather data from [apixu.com](http://apixu.com/). This api retrives and to normalise the data received from api call to [apixu.com](http://apixu.com/).
+A php api to parse weather data from [apixu.com](http://apixu.com/). This api retrieves and normalise the data received from api call to [apixu.com](http://apixu.com/).
 -----------
 
 For example code and how to use this api, please take a look into `Examples_*.php` files
