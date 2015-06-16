@@ -1,6 +1,6 @@
 <?php
 
-    $key = "8bba615605d04e59986174705150906";
+    $key = "YOUR_API_KEY";
     $city = 'paris';
     $url = "http://api.apixu.com/v1/current.json?key=$key&q=paris&=" ;
     

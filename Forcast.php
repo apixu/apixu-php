@@ -12,7 +12,7 @@ table, th, td {
 </style>
 <?php
 
-    $key = "8bba615605d04e59986174705150906";
+    $key = "YOUR_API_KEY";
     $forcast_days='1';
     $city = 'paris';
     $url ="http://api.apixu.com/v1/forecast.json?key=$key&q=$city&days=$forcast_days&=";
