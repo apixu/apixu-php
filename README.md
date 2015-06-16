@@ -29,5 +29,3 @@ Example call
 	echo "Temperature: " . $weather->current->temp_c;
 ```
 
-License
-=======
