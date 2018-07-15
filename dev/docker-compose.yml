@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  dev:
+    image: composer:1.6
+    volumes:
+      - ../:/apixu
+    working_dir: /apixu
