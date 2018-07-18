@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   dev:
-    image: composer:1.6
+    build: . 
     volumes:
       - ../:/apixu
     working_dir: /apixu
