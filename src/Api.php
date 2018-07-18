@@ -51,12 +51,14 @@ class Api implements ApiInterface
     {
         try {
             $res = $this->httpClient->request('GET', $url);
-            if ($res->getStatusCode() >= 500) {
+            $status = $res->getStatusCode();
+
+            if ($status >= 500) {
                 throw new InternalServerErrorException();
             }
 
             $response = $this->decode($res->getBody()->getContents());
-            if ($res->getStatusCode() != 200) {
+            if ($status != 200) {
                 throw new ErrorException($response['message'], $response['code']);
             }
 
