@@ -2,7 +2,7 @@
 
 namespace Apixu\Response;
 
-class Collection implements \Iterator, \Countable
+class Collection implements \Iterator, \Countable, ToArrayInterface
 {
     /**
      * @var array
@@ -71,7 +71,7 @@ class Collection implements \Iterator, \Countable
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function toArray()
     {
