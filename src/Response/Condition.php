@@ -2,7 +2,7 @@
 
 namespace Apixu\Response;
 
-class Condition
+class Condition implements ToArrayInterface
 {
     /**
      * @var int
@@ -25,14 +25,16 @@ class Condition
     private $icon;
 
     /**
-     * @param array $condition
+     * @return array
      */
-    public function __construct(array $condition)
+    public function toArray() : array
     {
-        $this->code = $condition['code'];
-        $this->day = $condition['day'];
-        $this->night = $condition['night'];
-        $this->icon = $condition['icon'];
+        return [
+            'code' => $this->getCode(),
+            'day' => $this->getDay(),
+            'night' => $this->getNight(),
+            'icon' => $this->getIcon(),
+        ];
     }
 
     /**

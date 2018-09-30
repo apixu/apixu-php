@@ -2,13 +2,24 @@
 
 namespace Apixu\Response;
 
-class Conditions extends Collection
+use Serializer\Collection;
+
+/**
+ * @Serializer\Collection("Apixu\Response\Condition")
+ */
+class Conditions extends Collection implements ToArrayInterface
 {
     /**
-     * @return Condition
+     * @return array
      */
-    public function current()
+    public function toArray() : array
     {
-        return new Condition($this->data[$this->i]);
+        $data = [];
+        /** @var Condition $item */
+        foreach ($this as $item) {
+            $data[] = $item->toArray();
+        }
+
+        return $data;
     }
 }

@@ -3,16 +3,10 @@
 use Apixu\Exception\ApixuException;
 use Apixu\Exception\InternalServerErrorException;
 
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-$config = new \Apixu\Config();
-$config->setApiKey($_SERVER['APIXUKEY']);
-
 try {
-    $api = \Apixu\Apixu::api($config);
+    $api = \Apixu\ApixuBuilder::instance()->setApiKey($_SERVER['APIXUKEY'])->build();
 } catch (ApixuException $e) {
     die($e->getMessage());
 }
