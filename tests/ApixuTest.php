@@ -2,17 +2,13 @@
 
 namespace Apixu\Tests;
 
+use Apixu\ApiInterface;
 use Apixu\Apixu;
 use Apixu\ApixuInterface;
 use Apixu\Config;
-use Apixu\Exception\ApixuException;
-use Apixu\Exception\InternalServerErrorException;
 use Apixu\Response\Condition;
 use Apixu\Response\Conditions;
-use Apixu\StatusCodes;
-use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use Serializer\SerializerInterface;
 
@@ -23,14 +19,14 @@ class ApixuTest extends TestCase
      */
     private $apixu;
 
-    private $httpClient;
+    private $api;
     private $serializer;
 
     protected function setUp()
     {
-        $this->httpClient = $this->createMock(ClientInterface::class);
+        $this->api = $this->createMock(ApiInterface::class);
         $this->serializer = $this->createMock(SerializerInterface::class);
-        $this->apixu = new Apixu('apikey', $this->httpClient, $this->serializer);
+        $this->apixu = new Apixu('apikey', $this->api, $this->serializer);
     }
 
     /**
@@ -41,24 +37,16 @@ class ApixuTest extends TestCase
      */
     public function testConditions(string $responseString, Conditions $expectedObject, array $expectedArray)
     {
-        $body = $this->createMock(StreamInterface::class);
-        $body->expects($this->once())
+        $response = $this->createMock(StreamInterface::class);
+        $response->expects($this->once())
             ->method('getContents')
             ->willReturn($responseString);
 
-        $response = $this->createMock(ResponseInterface::class);
-        $response->expects($this->once())
-            ->method('getBody')
-            ->willReturn($body);
-        $response->expects($this->once())
-            ->method('getStatusCode')
-            ->willReturn(StatusCodes::OK);
-
         $url = sprintf(Config::DOC_WEATHER_CONDITIONS_URL, Config::FORMAT);
-        $this->httpClient
+        $this->api
             ->expects($this->once())
-            ->method('request')
-            ->with('GET', $url)
+            ->method('call')
+            ->with($url)
             ->willReturn($response);
 
         $this->serializer->expects($this->once())
@@ -72,28 +60,6 @@ class ApixuTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Condition::class, $conditions);
         $this->assertEquals($expectedObject, $conditions);
         $this->assertEquals($expectedArray, $conditions->toArray());
-    }
-
-    public function testInternalServerError()
-    {
-        $response = $this->createMock(ResponseInterface::class);
-        $response->expects($this->once())
-            ->method('getStatusCode')
-            ->willReturn(StatusCodes::INTERNAL_SERVER_ERROR);
-        $url = sprintf(Config::DOC_WEATHER_CONDITIONS_URL, Config::FORMAT);
-        $this->httpClient
-            ->expects($this->once())
-            ->method('request')
-            ->with('GET', $url)
-            ->willReturn($response);
-
-        try {
-            $this->apixu->conditions();
-            $this->fail('No exception was thrown');
-        } catch (\Exception $e) {
-            $this->assertInstanceOf(ApixuException::class, $e);
-            $this->assertInstanceOf(InternalServerErrorException::class, $e);
-        }
     }
 
     /**

@@ -2,11 +2,7 @@
 
 namespace Apixu;
 
-use Apixu\Exception\ApixuException;
-use Apixu\Exception\ErrorException;
-use Apixu\Exception\InternalServerErrorException;
 use Apixu\Response\Conditions;
-use GuzzleHttp\ClientInterface;
 use Serializer\SerializerInterface;
 
 class Apixu implements ApixuInterface
@@ -17,9 +13,9 @@ class Apixu implements ApixuInterface
     private $apiKey;
 
     /**
-     * @var ClientInterface
+     * @var ApiInterface
      */
-    private $httpClient;
+    private $api;
 
     /**
      * @var SerializerInterface
@@ -28,13 +24,13 @@ class Apixu implements ApixuInterface
 
     /**
      * @param string $apiKey
-     * @param ClientInterface $httpClient
+     * @param ApiInterface $api
      * @param SerializerInterface $serializer
      */
-    public function __construct(string $apiKey, ClientInterface $httpClient, SerializerInterface $serializer)
+    public function __construct(string $apiKey, ApiInterface $api, SerializerInterface $serializer)
     {
         $this->apiKey = $apiKey;
-        $this->httpClient = $httpClient;
+        $this->api = $api;
         $this->serializer = $serializer;
     }
 
@@ -44,39 +40,18 @@ class Apixu implements ApixuInterface
     public function conditions() : Conditions
     {
         $url = sprintf(Config::DOC_WEATHER_CONDITIONS_URL, Config::FORMAT);
+        $response = $this->api->call($url);
 
-        return $this->call($url, Conditions::class);
+        return $this->getResponse($response->getContents(), Conditions::class);
     }
 
     /**
-     * @param string $url
-     * @return array
-     * @throws ApixuException
-     * @throws \Exception
-     * @throws \ErrorException
+     * @param string $contents
+     * @param string $class
+     * @return mixed
      */
-    private function call(string $url, string $class)
+    private function getResponse(string $contents, string $class)
     {
-        try {
-            $res = $this->httpClient->request('GET', $url);
-            $status = $res->getStatusCode();
-
-            if ($status >= StatusCodes::INTERNAL_SERVER_ERROR) {
-                throw new InternalServerErrorException();
-            }
-
-            $data = $res->getBody()->getContents();
-
-            if ($status !== StatusCodes::OK) {
-                $response = $this->serializer->unserialize($data, 'errorresponse::class');
-                throw new ErrorException($response['message'], $response['code']);
-            }
-
-            return $this->serializer->unserialize($data, $class);
-        } catch (ApixuException $e) {
-            throw $e;
-        } catch (\Exception $e) {
-            throw new ApixuException($e->getMessage(), $e->getCode(), $e);
-        }
+        return $this->serializer->unserialize($contents, $class);
     }
 }

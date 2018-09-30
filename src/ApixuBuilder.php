@@ -56,6 +56,8 @@ final class ApixuBuilder
             throw new ApixuException(sprintf('Build error: %s', $e->getMessage()), $e->getCode(), $e);
         }
 
-        return new Apixu($this->apiKey, $httpClient, $serializer);
+        $api = new Api($httpClient);
+
+        return new Apixu($this->apiKey, $api, $serializer);
     }
 }
