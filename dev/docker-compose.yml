@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  dev:
-    build: . 
-    volumes:
-      - ../:/apixu
-    working_dir: /apixu
