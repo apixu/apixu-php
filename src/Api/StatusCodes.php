@@ -1,6 +1,6 @@
 <?php
 
-namespace Apixu;
+namespace Apixu\Api;
 
 class StatusCodes
 {

@@ -2,6 +2,7 @@
 
 namespace Apixu;
 
+use Apixu\Api\Api;
 use Apixu\Exception\ApixuException;
 use Apixu\Exception\InvalidArgumentException;
 use GuzzleHttp\Client;

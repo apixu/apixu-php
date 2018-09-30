@@ -2,6 +2,7 @@
 
 namespace Apixu;
 
+use Apixu\Api\ApiInterface;
 use Apixu\Response\Conditions;
 use Serializer\SerializerInterface;
 

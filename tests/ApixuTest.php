@@ -2,7 +2,7 @@
 
 namespace Apixu\Tests;
 
-use Apixu\ApiInterface;
+use Apixu\Api\ApiInterface;
 use Apixu\Apixu;
 use Apixu\ApixuInterface;
 use Apixu\Config;

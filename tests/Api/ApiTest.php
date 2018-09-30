@@ -1,13 +1,13 @@
 <?php declare(strict_types = 1);
 
-namespace Apixu\Tests;
+namespace Apixu\Tests\Api;
 
-use Apixu\Api;
-use Apixu\ApiInterface;
+use Apixu\Api\Api;
+use Apixu\Api\ApiInterface;
 use Apixu\Exception\ApixuException;
 use Apixu\Exception\ErrorException;
 use Apixu\Exception\InternalServerErrorException;
-use Apixu\StatusCodes;
+use Apixu\Api\StatusCodes;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request;
