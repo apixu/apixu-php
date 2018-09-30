@@ -11,7 +11,7 @@
         stopOnRisky="true"
         bootstrap="../vendor/autoload.php">
         <logging>
-                <log type="coverage-html" target="../build/coverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="70" highLowerBound="90" />
+                <log type="coverage-html" target="../build/coverage" lowUpperBound="70" highLowerBound="90" />
         </logging>
         <filter>
                 <whitelist>
