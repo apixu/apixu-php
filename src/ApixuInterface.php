@@ -3,8 +3,8 @@
 namespace Apixu;
 
 use Apixu\Exception\ApixuException;
-use Apixu\Exception\ErrorException;
 use Apixu\Response\Conditions;
+use Apixu\Response\CurrentWeather;
 
 interface ApixuInterface
 {
@@ -13,7 +13,15 @@ interface ApixuInterface
      *
      * @return Conditions
      * @throws ApixuException
-     * @throws ErrorException
      */
     public function conditions() : Conditions;
+
+    /**
+     * Realtime weather information by city name
+     *
+     * @param string $query
+     * @return CurrentWeather
+     * @throws ApixuException
+     */
+    public function current(string $query) : CurrentWeather;
 }

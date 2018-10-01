@@ -4,10 +4,11 @@ namespace Apixu\Tests\Api;
 
 use Apixu\Api\Api;
 use Apixu\Api\ApiInterface;
+use Apixu\Api\StatusCodes;
+use Apixu\Config;
 use Apixu\Exception\ApixuException;
 use Apixu\Exception\ErrorException;
 use Apixu\Exception\InternalServerErrorException;
-use Apixu\Api\StatusCodes;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request;
@@ -22,15 +23,49 @@ class ApiTest extends TestCase
      */
     private $api;
 
+    private $apiKey = 'apikey';
     private $httpClient;
 
     protected function setUp()
     {
         $this->httpClient = $this->createMock(ClientInterface::class);
-        $this->api = new Api($this->httpClient);
+        $this->api = new Api($this->apiKey, $this->httpClient);
     }
 
-    public function testCall()
+    public function testCallWithMethod()
+    {
+        $body = $this->createMock(StreamInterface::class);
+
+        $response = $this->createMock(ResponseInterface::class);
+        $response->expects($this->once())
+            ->method('getBody')
+            ->willReturn($body);
+        $response->expects($this->once())
+            ->method('getStatusCode')
+            ->willReturn(StatusCodes::OK);
+
+        $method = 'method';
+        $query = 'query';
+        $url = sprintf(
+            Config::API_URL,
+            Config::API_VERSION,
+            $method,
+            Config::FORMAT,
+            $this->apiKey,
+            '&q=' . $query
+        );
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('request')
+            ->with('GET', $url)
+            ->willReturn($response);
+
+        $result = $this->api->call($method, ['q' => $query]);
+        $this->assertInstanceOf(StreamInterface::class, $result);
+    }
+
+    public function testCallWithUrl()
     {
         $body = $this->createMock(StreamInterface::class);
 

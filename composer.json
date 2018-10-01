@@ -16,7 +16,7 @@
     "require": {
         "php": ">=7.1",
         "guzzlehttp/guzzle": "^6.2",
-        "andreiavrammsd/serializer": "dev-master"
+        "andreiavrammsd/serializer": "v0.1-alpha"
     },
     "autoload": {
         "psr-4" : {

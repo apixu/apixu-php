@@ -6,8 +6,11 @@ use Apixu\Api\ApiInterface;
 use Apixu\Apixu;
 use Apixu\ApixuInterface;
 use Apixu\Config;
+use Apixu\Exception\ApixuException;
+use Apixu\Exception\InvalidArgumentException;
 use Apixu\Response\Condition;
 use Apixu\Response\Conditions;
+use Apixu\Response\CurrentWeather;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use Serializer\SerializerInterface;
@@ -26,7 +29,7 @@ class ApixuTest extends TestCase
     {
         $this->api = $this->createMock(ApiInterface::class);
         $this->serializer = $this->createMock(SerializerInterface::class);
-        $this->apixu = new Apixu('apikey', $this->api, $this->serializer);
+        $this->apixu = new Apixu($this->api, $this->serializer);
     }
 
     /**
@@ -60,6 +63,56 @@ class ApixuTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Condition::class, $conditions);
         $this->assertEquals($expectedObject, $conditions);
         $this->assertEquals($expectedArray, $conditions->toArray());
+    }
+
+    public function testCurrent()
+    {
+        $responseString = '[]';
+        $expectedObject = new CurrentWeather();
+
+        $response = $this->createMock(StreamInterface::class);
+        $response->expects($this->once())
+            ->method('getContents')
+            ->willReturn($responseString);
+
+        $this->api
+            ->expects($this->once())
+            ->method('call')
+            ->with('current', ['q' => 'query'])
+            ->willReturn($response);
+
+        $this->serializer->expects($this->once())
+            ->method('unserialize')
+            ->with($responseString, CurrentWeather::class)
+            ->willReturn($expectedObject);
+
+        /** @var CurrentWeather $current */
+        $current = $this->apixu->current('query');
+        $this->assertEquals($expectedObject, $current);
+    }
+
+    public function testCurrentWithMissingQuery()
+    {
+        try {
+            $query = ' ';
+            $this->apixu->current($query);
+            $this->fail('No exception was thrown');
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(ApixuException::class, $e);
+            $this->assertInstanceOf(InvalidArgumentException::class, $e);
+        }
+    }
+
+    public function testCurrentWithQueryTooLong()
+    {
+        try {
+            $query = str_repeat('q', Config::MAX_QUERY_LENGTH + 1);
+            $this->apixu->current($query);
+            $this->fail('No exception was thrown');
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(ApixuException::class, $e);
+            $this->assertInstanceOf(InvalidArgumentException::class, $e);
+        }
     }
 
     /**

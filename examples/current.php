@@ -12,8 +12,10 @@ try {
     die($e->getMessage());
 }
 
+$q = 'London';
+
 try {
-    $conditions = $api->conditions();
+    $current = $api->current($q);
 } catch (InternalServerErrorException $e) {
     die($e->getMessage());
 } catch (ErrorException $e) {
@@ -22,15 +24,4 @@ try {
     die($e->getMessage());
 }
 
-/** @var \Apixu\Response\Condition $condition */
-foreach ($conditions as $condition) {
-    echo sprintf(
-        "%s, %s, %s, %s\n",
-        $condition->getCode(),
-        $condition->getDay(),
-        $condition->getNight(),
-        $condition->getIcon()
-    );
-}
-
-print_r($conditions->toArray());
+print_r($current->toArray());

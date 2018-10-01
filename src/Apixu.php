@@ -3,16 +3,14 @@
 namespace Apixu;
 
 use Apixu\Api\ApiInterface;
+use Apixu\Exception\InvalidArgumentException;
 use Apixu\Response\Conditions;
+use Apixu\Response\CurrentWeather;
+use Psr\Http\Message\StreamInterface;
 use Serializer\SerializerInterface;
 
 class Apixu implements ApixuInterface
 {
-    /**
-     * @var string
-     */
-    private $apiKey;
-
     /**
      * @var ApiInterface
      */
@@ -24,13 +22,11 @@ class Apixu implements ApixuInterface
     private $serializer;
 
     /**
-     * @param string $apiKey
      * @param ApiInterface $api
      * @param SerializerInterface $serializer
      */
-    public function __construct(string $apiKey, ApiInterface $api, SerializerInterface $serializer)
+    public function __construct(ApiInterface $api, SerializerInterface $serializer)
     {
-        $this->apiKey = $apiKey;
         $this->api = $api;
         $this->serializer = $serializer;
     }
@@ -43,16 +39,46 @@ class Apixu implements ApixuInterface
         $url = sprintf(Config::DOC_WEATHER_CONDITIONS_URL, Config::FORMAT);
         $response = $this->api->call($url);
 
-        return $this->getResponse($response->getContents(), Conditions::class);
+        return $this->getResponse($response, Conditions::class);
     }
 
     /**
-     * @param string $contents
+     * {@inheritdoc}
+     */
+    public function current(string $query) : CurrentWeather
+    {
+        $this->validateQuery($query);
+        $response = $this->api->call('current', ['q' => $query]);
+
+        return $this->getResponse($response, CurrentWeather::class);
+    }
+
+    /**
+     * @param string $query
+     * @throws InvalidArgumentException
+     */
+    private function validateQuery(string $query)
+    {
+        $query = trim($query);
+
+        if ($query === '') {
+            throw new InvalidArgumentException('Query is missing');
+        }
+
+        if (strlen($query) > Config::MAX_QUERY_LENGTH) {
+            throw new InvalidArgumentException(
+                sprintf('Query exceeds maximum length (%d)', Config::MAX_QUERY_LENGTH)
+            );
+        }
+    }
+
+    /**
+     * @param StreamInterface $response
      * @param string $class
      * @return mixed
      */
-    private function getResponse(string $contents, string $class)
+    private function getResponse(StreamInterface $response, string $class)
     {
-        return $this->serializer->unserialize($contents, $class);
+        return $this->serializer->unserialize($response->getContents(), $class);
     }
 }

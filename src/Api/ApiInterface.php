@@ -10,11 +10,12 @@ use Psr\Http\Message\StreamInterface;
 interface ApiInterface
 {
     /**
-     * @param string $url
+     * @param string $method
+     * @param array $params
      * @return StreamInterface
      * @throws ApixuException
      * @throws InternalServerErrorException
      * @throws ErrorException
      */
-    public function call(string $url) : StreamInterface;
+    public function call(string $method, array $params = []) : StreamInterface;
 }
