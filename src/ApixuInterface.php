@@ -5,6 +5,7 @@ namespace Apixu;
 use Apixu\Exception\ApixuException;
 use Apixu\Response\Conditions;
 use Apixu\Response\CurrentWeather;
+use Apixu\Response\Search;
 
 interface ApixuInterface
 {
@@ -24,4 +25,13 @@ interface ApixuInterface
      * @throws ApixuException
      */
     public function current(string $query) : CurrentWeather;
+
+    /**
+     * Finds cities and towns matching your query (autocomplete)
+     *
+     * @param string $query
+     * @return Search
+     * @throws ApixuException
+     */
+    public function search(string $query) : Search;
 }

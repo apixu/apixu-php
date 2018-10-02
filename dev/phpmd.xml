@@ -9,7 +9,9 @@
     <rule ref="rulesets/codesize.xml">
         <exclude name="TooManyFields"/>
     </rule>
-    <rule ref="rulesets/naming.xml"/>
+    <rule ref="rulesets/naming.xml">
+        <exclude name="ShortVariable"/>
+    </rule>
 
     <rule name="TooManyFields"
           since="0.1"
@@ -26,6 +28,18 @@ For example, a class with city/state/zip fields could instead have one Address f
         <priority>3</priority>
         <properties>
             <property name="maxfields" description="The field count reporting threshold" value="20"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/naming.xml/ShortVariable"
+          since="0.2"
+          message="Avoid variables with short names like {0}. Configured minimum length is {1}."
+          class="PHPMD\Rule\Naming\ShortVariable"
+          externalInfoUrl="http://phpmd.org/rules/naming.html#shortvariable">
+        <priority>3</priority>
+        <properties>
+            <property name="minimum" description="Minimum length for a variable, property or parameter name" value="3"/>
+            <property name="exceptions" value="id" />
         </properties>
     </rule>
 </ruleset>

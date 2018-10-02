@@ -5,6 +5,14 @@ namespace Apixu\Response;
 class Location implements ToArrayInterface
 {
     /**
+     * @var int|null
+     *
+     * @Serializer\Property("id")
+     * @Serializer\Type("string")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @Serializer\Property("name")
@@ -73,16 +81,39 @@ class Location implements ToArrayInterface
      */
     public function toArray() : array
     {
-        return [
-            'name' => $this->getName(),
-            'region' => $this->getRegion(),
-            'country' => $this->getCountry(),
-            'lat' => $this->getLat(),
-            'lon' => $this->getLon(),
-            'timezone' => $this->getTimezone(),
-            'localtime_epoch' => $this->getLocaltimeEpoch(),
-            'localtime' => $this->getLocaltime(),
-        ];
+        $data = [];
+
+        if ($this->getId() !== null) {
+            $data['id'] = $this->getId();
+        }
+
+        $data['name'] = $this->getName();
+        $data['region'] = $this->getRegion();
+        $data['country'] = $this->getCountry();
+        $data['lat'] = $this->getLat();
+        $data['lon'] = $this->getLon();
+
+        if ($this->getTimezone() !== null) {
+            $data['timezone'] = $this->getTimezone();
+        }
+
+        if ($this->getTimezone() !== null) {
+            $data['localtime_epoch'] = $this->getLocaltimeEpoch();
+        }
+
+        if ($this->getLocaltime() !== null) {
+            $data['localtime'] = $this->getLocaltime();
+        }
+
+        return $data;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId() : ?int
+    {
+        return $this->id; // must be null for current
     }
 
     /**
@@ -126,25 +157,25 @@ class Location implements ToArrayInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTimezone() : string
+    public function getTimezone() : ?string
     {
         return $this->timezone;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getLocaltimeEpoch() : int
+    public function getLocaltimeEpoch() : ?int
     {
         return $this->localtimeEpoch;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getLocaltime() : \DateTime
+    public function getLocaltime() : ?\DateTime
     {
         return $this->localtime;
     }

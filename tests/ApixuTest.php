@@ -11,6 +11,8 @@ use Apixu\Exception\InvalidArgumentException;
 use Apixu\Response\Condition;
 use Apixu\Response\Conditions;
 use Apixu\Response\CurrentWeather;
+use Apixu\Response\Search;
+use Apixu\Response\ToArrayInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use Serializer\SerializerInterface;
@@ -63,6 +65,7 @@ class ApixuTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Condition::class, $conditions);
         $this->assertEquals($expectedObject, $conditions);
         $this->assertEquals($expectedArray, $conditions->toArray());
+        $this->assertInstanceOf(ToArrayInterface::class, $conditions);
     }
 
     public function testCurrent()
@@ -89,6 +92,7 @@ class ApixuTest extends TestCase
         /** @var CurrentWeather $current */
         $current = $this->apixu->current('query');
         $this->assertEquals($expectedObject, $current);
+        $this->assertInstanceOf(ToArrayInterface::class, $current);
     }
 
     public function testCurrentWithMissingQuery()
@@ -113,6 +117,33 @@ class ApixuTest extends TestCase
             $this->assertInstanceOf(ApixuException::class, $e);
             $this->assertInstanceOf(InvalidArgumentException::class, $e);
         }
+    }
+
+    public function testSearch()
+    {
+        $responseString = '[{}]';
+        $expectedObject = new Search([]);
+
+        $response = $this->createMock(StreamInterface::class);
+        $response->expects($this->once())
+            ->method('getContents')
+            ->willReturn($responseString);
+
+        $this->api
+            ->expects($this->once())
+            ->method('call')
+            ->with('search', ['q' => 'query'])
+            ->willReturn($response);
+
+        $this->serializer->expects($this->once())
+            ->method('unserialize')
+            ->with($responseString, Search::class)
+            ->willReturn($expectedObject);
+
+        /** @var Search $search */
+        $search = $this->apixu->search('query');
+        $this->assertEquals($expectedObject, $search);
+        $this->assertInstanceOf(ToArrayInterface::class, $search);
     }
 
     /**

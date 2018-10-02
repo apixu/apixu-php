@@ -6,6 +6,7 @@ use Apixu\Api\ApiInterface;
 use Apixu\Exception\InvalidArgumentException;
 use Apixu\Response\Conditions;
 use Apixu\Response\CurrentWeather;
+use Apixu\Response\Search;
 use Psr\Http\Message\StreamInterface;
 use Serializer\SerializerInterface;
 
@@ -51,6 +52,17 @@ class Apixu implements ApixuInterface
         $response = $this->api->call('current', ['q' => $query]);
 
         return $this->getResponse($response, CurrentWeather::class);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function search(string $query) : Search
+    {
+        $this->validateQuery($query);
+        $response = $this->api->call('search', ['q' => $query]);
+
+        return $this->getResponse($response, Search::class);
     }
 
     /**
