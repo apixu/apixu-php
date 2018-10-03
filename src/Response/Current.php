@@ -2,8 +2,13 @@
 
 namespace Apixu\Response;
 
+use Serializer\ToArray\ToArrayInterface;
+use Serializer\ToArray\ToArrayTrait;
+
 class Current implements ToArrayInterface
 {
+    use ToArrayTrait;
+
     /**
      * @var int
      *
@@ -322,34 +327,5 @@ class Current implements ToArrayInterface
     public function getVisMiles() : float
     {
         return $this->visMiles;
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray() : array
-    {
-        return [
-            'last_updated_epoch' => $this->getLastUpdatedEpoch(),
-            'last_updated' => $this->getLastUpdated(),
-            'temp_celsius' => $this->getTempCelsius(),
-            'temp_fahrenheit' => $this->getTempFahrenheit(),
-            'is_day' => $this->isDay(),
-            'condition' => $this->condition->toArray(),
-            'wind_mph' => $this->getWindMPH(),
-            'wind_kph' => $this->getWindKPH(),
-            'wind_degree' => $this->getWindDegree(),
-            'wind_direction' => $this->getWindDirection(),
-            'pressure_mb' => $this->getPressureMB(),
-            'pressure_in' => $this->getPressureIN(),
-            'precip_mm' => $this->getPrecipMM(),
-            'precip_in' => $this->getPrecipIN(),
-            'humidity' => $this->getHumidity(),
-            'cloud' => $this->getCloud(),
-            'feels_like_celsius' => $this->getFeelsLikeCelsius(),
-            'feels_like_fahrenheit' => $this->getFeelsLikeFahrenheit(),
-            'vis_km' => $this->getVisKM(),
-            'vis_miles' => $this->getVisMiles(),
-        ];
     }
 }

@@ -2,40 +2,44 @@
 
 namespace Apixu\Response;
 
+use Serializer\ToArray\ToArrayInterface;
+use Serializer\ToArray\ToArrayTrait;
+
 class Condition implements ToArrayInterface
 {
+    use ToArrayTrait;
+
     /**
      * @var int
+     *
+     * @Serializer\Property("code")
+     * @Serializer\Type("int")
      */
     private $code;
 
     /**
      * @var string
+     *
+     * @Serializer\Property("day")
+     * @Serializer\Type("string")
      */
     private $day;
 
     /**
      * @var string
+     *
+     * @Serializer\Property("night")
+     * @Serializer\Type("string")
      */
     private $night;
 
     /**
      * @var int
+     *
+     * @Serializer\Property("icon")
+     * @Serializer\Type("int")
      */
     private $icon;
-
-    /**
-     * @return array
-     */
-    public function toArray() : array
-    {
-        return [
-            'code' => $this->getCode(),
-            'day' => $this->getDay(),
-            'night' => $this->getNight(),
-            'icon' => $this->getIcon(),
-        ];
-    }
 
     /**
      * @return int

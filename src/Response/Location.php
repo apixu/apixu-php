@@ -2,8 +2,13 @@
 
 namespace Apixu\Response;
 
+use Serializer\ToArray\ToArrayInterface;
+use Serializer\ToArray\ToArrayTrait;
+
 class Location implements ToArrayInterface
 {
+    use ToArrayTrait;
+
     /**
      * @var int|null
      *
@@ -75,38 +80,6 @@ class Location implements ToArrayInterface
      * @Serializer\Type("DateTime", "Y-m-d H:i")
      */
     private $localtime;
-
-    /**
-     * @return array
-     */
-    public function toArray() : array
-    {
-        $data = [];
-
-        if ($this->getId() !== null) {
-            $data['id'] = $this->getId();
-        }
-
-        $data['name'] = $this->getName();
-        $data['region'] = $this->getRegion();
-        $data['country'] = $this->getCountry();
-        $data['lat'] = $this->getLat();
-        $data['lon'] = $this->getLon();
-
-        if ($this->getTimezone() !== null) {
-            $data['timezone'] = $this->getTimezone();
-        }
-
-        if ($this->getTimezone() !== null) {
-            $data['localtime_epoch'] = $this->getLocaltimeEpoch();
-        }
-
-        if ($this->getLocaltime() !== null) {
-            $data['localtime'] = $this->getLocaltime();
-        }
-
-        return $data;
-    }
 
     /**
      * @return int

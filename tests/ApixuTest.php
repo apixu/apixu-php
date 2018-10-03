@@ -12,10 +12,10 @@ use Apixu\Response\Condition;
 use Apixu\Response\Conditions;
 use Apixu\Response\CurrentWeather;
 use Apixu\Response\Search;
-use Apixu\Response\ToArrayInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use Serializer\SerializerInterface;
+use Serializer\ToArray\ToArrayInterface;
 
 class ApixuTest extends TestCase
 {
@@ -34,14 +34,11 @@ class ApixuTest extends TestCase
         $this->apixu = new Apixu($this->api, $this->serializer);
     }
 
-    /**
-     * @dataProvider conditionsTestData
-     * @param string $responseString
-     * @param Conditions $expectedObject
-     * @param array $expectedArray
-     */
-    public function testConditions(string $responseString, Conditions $expectedObject, array $expectedArray)
+    public function testConditions()
     {
+        $responseString = '[{},{}]';
+        $expectedObject = new Conditions([new Condition(), new Condition()]);
+
         $response = $this->createMock(StreamInterface::class);
         $response->expects($this->once())
             ->method('getContents')
@@ -64,7 +61,6 @@ class ApixuTest extends TestCase
         $this->assertCount(2, $conditions);
         $this->assertContainsOnlyInstancesOf(Condition::class, $conditions);
         $this->assertEquals($expectedObject, $conditions);
-        $this->assertEquals($expectedArray, $conditions->toArray());
         $this->assertInstanceOf(ToArrayInterface::class, $conditions);
     }
 
@@ -144,49 +140,5 @@ class ApixuTest extends TestCase
         $search = $this->apixu->search('query');
         $this->assertEquals($expectedObject, $search);
         $this->assertInstanceOf(ToArrayInterface::class, $search);
-    }
-
-    /**
-     * @return array
-     */
-    public function conditionsTestData() : array
-    {
-        $responseString = '[
-            {
-                "code" : 1000,
-                "day" : "Sunny",
-                "night" : "Clear",
-                "icon" : 113
-            },
-            {
-                "code" : 1003,
-                "day" : "Partly cloudy",
-                "night" : "Partly cloudy",
-                "icon" : 116
-            }]';
-
-        $expectedArray = json_decode($responseString, true);
-        $ref = new \ReflectionClass(Condition::class);
-
-        $conditions = [];
-        foreach ($expectedArray as $item) {
-            $c = new Condition();
-            foreach ($item as $k => $v) {
-                $p = $ref->getProperty($k);
-                $p->setAccessible(true);
-                $p->setValue($c, $v);
-            }
-            $conditions [] = $c;
-        }
-
-        $expectedObject = new Conditions($conditions);
-
-        return [
-            [
-                $responseString,
-                $expectedObject,
-                $expectedArray,
-            ]
-        ];
     }
 }

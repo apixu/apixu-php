@@ -2,8 +2,13 @@
 
 namespace Apixu\Response;
 
+use Serializer\ToArray\ToArrayInterface;
+use Serializer\ToArray\ToArrayTrait;
+
 class CurrentWeather implements ToArrayInterface
 {
+    use ToArrayTrait;
+
     /**
      * @var Location
      *
@@ -20,17 +25,6 @@ class CurrentWeather implements ToArrayInterface
      *
      */
     private $current;
-
-    /**
-     * @return array
-     */
-    public function toArray() : array
-    {
-        return [
-            'location' => $this->getLocation()->toArray(),
-            'current' => $this->getCurrent()->toArray(),
-        ];
-    }
 
     /**
      * @return Location

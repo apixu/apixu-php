@@ -3,23 +3,13 @@
 namespace Apixu\Response;
 
 use Serializer\Collection;
+use Serializer\ToArray\ToArrayInterface;
+use Serializer\ToArray\ToArrayTrait;
 
 /**
  * @Serializer\Collection("Apixu\Response\Location")
  */
 class Search extends Collection implements ToArrayInterface
 {
-    /**
-     * @return array
-     */
-    public function toArray() : array
-    {
-        $data = [];
-        /** @var Location $item */
-        foreach ($this as $item) {
-            $data[] = $item->toArray();
-        }
-
-        return $data;
-    }
+    use ToArrayTrait;
 }

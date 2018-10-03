@@ -2,8 +2,13 @@
 
 namespace Apixu\Response;
 
+use Serializer\ToArray\ToArrayInterface;
+use Serializer\ToArray\ToArrayTrait;
+
 class CurrentCondition implements ToArrayInterface
 {
+    use ToArrayTrait;
+
     /**
      * @var string
      *
@@ -27,18 +32,6 @@ class CurrentCondition implements ToArrayInterface
      * @Serializer\Type("int")
      */
     private $code;
-
-    /**
-     * @return array
-     */
-    public function toArray() : array
-    {
-        return [
-            'text' => $this->getText(),
-            'icon' => $this->getIcon(),
-            'code' => $this->getCode(),
-        ];
-    }
 
     /**
      * @return string
