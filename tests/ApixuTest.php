@@ -12,6 +12,7 @@ use Apixu\Response\Condition;
 use Apixu\Response\Conditions;
 use Apixu\Response\CurrentWeather;
 use Apixu\Response\Forecast\Forecast;
+use Apixu\Response\History;
 use Apixu\Response\Search;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
@@ -166,6 +167,36 @@ class ApixuTest extends TestCase
 
         /** @var Forecast $forecast */
         $forecast = $this->apixu->forecast('query', 1);
+        $this->assertEquals($expectedObject, $forecast);
+        $this->assertInstanceOf(ToArrayInterface::class, $forecast);
+    }
+
+    public function testHistory()
+    {
+        $responseString = '{}';
+        $expectedObject = new History();
+
+        $response = $this->createMock(StreamInterface::class);
+        $response->expects($this->once())
+            ->method('getContents')
+            ->willReturn($responseString);
+
+        $query = 'query';
+        $since = new \DateTime();
+
+        $this->api
+            ->expects($this->once())
+            ->method('call')
+            ->with('history', ['q' => $query, 'dt' => $since->format(Apixu::HISTORY_SINCE_FORMAT),])
+            ->willReturn($response);
+
+        $this->serializer->expects($this->once())
+            ->method('unserialize')
+            ->with($responseString, History::class)
+            ->willReturn($expectedObject);
+
+        /** @var History $forecast */
+        $forecast = $this->apixu->history($query, $since);
         $this->assertEquals($expectedObject, $forecast);
         $this->assertInstanceOf(ToArrayInterface::class, $forecast);
     }

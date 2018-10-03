@@ -7,6 +7,7 @@ use Apixu\Exception\InvalidArgumentException;
 use Apixu\Response\Conditions;
 use Apixu\Response\CurrentWeather;
 use Apixu\Response\Forecast\Forecast;
+use Apixu\Response\History;
 use Apixu\Response\Search;
 use Psr\Http\Message\StreamInterface;
 use Serializer\SerializerInterface;
@@ -75,6 +76,17 @@ class Apixu implements ApixuInterface
         $response = $this->api->call('forecast', ['q' => $query, 'days' => $days]);
 
         return $this->getResponse($response, Forecast::class);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function history(string $query, \DateTime $since) : History
+    {
+        $this->validateQuery($query);
+        $response = $this->api->call('history', ['q' => $query, 'dt' => $since->format(self::HISTORY_SINCE_FORMAT)]);
+
+        return $this->getResponse($response, History::class);
     }
 
     /**
