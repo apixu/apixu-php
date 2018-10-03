@@ -60,25 +60,25 @@ class Api implements ApiInterface
     }
 
     /**
-     * @param string $method
+     * @param string $methodOrUrl
      * @param array $params
      * @return string
      */
-    private function getApiUrl(string $method, array $params = [])
+    private function getApiUrl(string $methodOrUrl, array $params = []) : string
     {
+        if (filter_var($methodOrUrl, FILTER_VALIDATE_URL)) {
+            return $methodOrUrl;
+        }
+
         $query = '';
         if (count($params) > 0) {
             $query = '&' . http_build_query($params);
         }
 
-        if (filter_var($method, FILTER_VALIDATE_URL)) {
-            return $method;
-        }
-
         return sprintf(
             Config::API_URL,
             Config::API_VERSION,
-            $method,
+            $methodOrUrl,
             Config::FORMAT,
             $this->apiKey,
             $query
