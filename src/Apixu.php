@@ -6,6 +6,7 @@ use Apixu\Api\ApiInterface;
 use Apixu\Exception\InvalidArgumentException;
 use Apixu\Response\Conditions;
 use Apixu\Response\CurrentWeather;
+use Apixu\Response\Forecast\Forecast;
 use Apixu\Response\Search;
 use Psr\Http\Message\StreamInterface;
 use Serializer\SerializerInterface;
@@ -63,6 +64,17 @@ class Apixu implements ApixuInterface
         $response = $this->api->call('search', ['q' => $query]);
 
         return $this->getResponse($response, Search::class);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function forecast(string $query, int $days) : Forecast
+    {
+        $this->validateQuery($query);
+        $response = $this->api->call('forecast', ['q' => $query, 'days' => $days]);
+
+        return $this->getResponse($response, Forecast::class);
     }
 
     /**

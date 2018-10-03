@@ -11,6 +11,7 @@ use Apixu\Exception\InvalidArgumentException;
 use Apixu\Response\Condition;
 use Apixu\Response\Conditions;
 use Apixu\Response\CurrentWeather;
+use Apixu\Response\Forecast\Forecast;
 use Apixu\Response\Search;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
@@ -140,5 +141,32 @@ class ApixuTest extends TestCase
         $search = $this->apixu->search('query');
         $this->assertEquals($expectedObject, $search);
         $this->assertInstanceOf(ToArrayInterface::class, $search);
+    }
+
+    public function testForecast()
+    {
+        $responseString = '{}';
+        $expectedObject = new Forecast();
+
+        $response = $this->createMock(StreamInterface::class);
+        $response->expects($this->once())
+            ->method('getContents')
+            ->willReturn($responseString);
+
+        $this->api
+            ->expects($this->once())
+            ->method('call')
+            ->with('forecast', ['q' => 'query', 'days' => 1,])
+            ->willReturn($response);
+
+        $this->serializer->expects($this->once())
+            ->method('unserialize')
+            ->with($responseString, Forecast::class)
+            ->willReturn($expectedObject);
+
+        /** @var Forecast $forecast */
+        $forecast = $this->apixu->forecast('query', 1);
+        $this->assertEquals($expectedObject, $forecast);
+        $this->assertInstanceOf(ToArrayInterface::class, $forecast);
     }
 }
