@@ -43,7 +43,7 @@ class Api implements ApiInterface
             $status = $res->getStatusCode();
 
             if ($status >= StatusCodes::INTERNAL_SERVER_ERROR) {
-                throw new InternalServerErrorException();
+                throw new InternalServerErrorException('Server Error', $status);
             }
 
             if ($status !== StatusCodes::OK) {
