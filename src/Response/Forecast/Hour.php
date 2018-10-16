@@ -283,9 +283,9 @@ class Hour implements ToArrayInterface
     }
 
     /**
-     * @return boolean|null
+     * @return bool|null
      */
-    public function getIsDay() : ?boolean
+    public function getIsDay() : ?bool
     {
         return $this->isDay;
     }
@@ -443,9 +443,9 @@ class Hour implements ToArrayInterface
     }
 
     /**
-     * @return boolean|null
+     * @return bool|null
      */
-    public function getWillItRain() : ?boolean
+    public function getWillItRain() : ?bool
     {
         return $this->willItRain;
     }
@@ -459,9 +459,9 @@ class Hour implements ToArrayInterface
     }
 
     /**
-     * @return boolean|null
+     * @return bool|null
      */
-    public function getWillItSnow() : ?boolean
+    public function getWillItSnow() : ?bool
     {
         return $this->willItSnow;
     }
