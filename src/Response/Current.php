@@ -47,7 +47,7 @@ class Current implements ToArrayInterface
      * @Serializer\Property("is_day")
      * @Serializer\Type("bool")
      */
-    private $isDay;
+    private $day;
 
     /**
      * @var \Apixu\Response\CurrentCondition
@@ -206,7 +206,7 @@ class Current implements ToArrayInterface
      */
     public function isDay() : ?bool
     {
-        return $this->isDay;
+        return $this->day;
     }
 
     /**
