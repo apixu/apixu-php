@@ -13,7 +13,8 @@ try {
 }
 
 $q = 'London';
-$since = \DateTime::createFromFormat('Y-m-d', '2018-10-03');
+$since = new \DateTime();
+$since->modify('-1 day');
 
 try {
     $history = $api->history($q, $since);
