@@ -24,4 +24,18 @@ try {
     die($e->getMessage());
 }
 
+$template = <<< EOT
+The current weather for %s is:
+    - Temperature: %d degrees Celsius
+    - Humidity: %d
+
+EOT;
+
+echo sprintf(
+    $template,
+    $current->getLocation()->getName(),
+    $current->getCurrent()->getTempCelsius(),
+    $current->getCurrent()->getHumidity()
+);
+
 print_r($current->toArray());

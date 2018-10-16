@@ -10,7 +10,7 @@ class CurrentCondition implements ToArrayInterface
     use ToArrayTrait;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Serializer\Property("text")
      * @Serializer\Type("string")
@@ -18,7 +18,7 @@ class CurrentCondition implements ToArrayInterface
     private $text;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Serializer\Property("icon")
      * @Serializer\Type("string")
@@ -26,7 +26,7 @@ class CurrentCondition implements ToArrayInterface
     private $icon;
 
     /**
-     * @var int
+     * @var int|null
      *
      * @Serializer\Property("code")
      * @Serializer\Type("int")
@@ -34,25 +34,25 @@ class CurrentCondition implements ToArrayInterface
     private $code;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getText() : string
+    public function getText() : ?string
     {
         return $this->text;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getIcon() : string
+    public function getIcon() : ?string
     {
         return $this->icon;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCode() : int
+    public function getCode() : ?int
     {
         return $this->code;
     }

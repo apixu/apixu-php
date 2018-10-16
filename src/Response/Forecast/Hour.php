@@ -2,6 +2,7 @@
 
 namespace Apixu\Response\Forecast;
 
+use Apixu\Response\CurrentCondition;
 use Serializer\ToArray\ToArrayInterface;
 use Serializer\ToArray\ToArrayTrait;
 
@@ -50,7 +51,7 @@ class Hour implements ToArrayInterface
     private $isDay;
 
     /**
-     * @var \Apixu\Response\CurrentCondition|null
+     * @var CurrentCondition
      *
      * @Serializer\Property("condition")
      * @Serializer\Type("Apixu\Response\CurrentCondition")
@@ -252,15 +253,15 @@ class Hour implements ToArrayInterface
     /**
      * @return int|null
      */
-    public function getTimeEpoch() : int
+    public function getTimeEpoch() : ?int
     {
         return $this->timeEpoch;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getTime() : \DateTime
+    public function getTime() : ?\DateTime
     {
         return $this->time;
     }
@@ -268,7 +269,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getTempCelsius() : float
+    public function getTempCelsius() : ?float
     {
         return $this->tempCelsius;
     }
@@ -276,7 +277,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getTempFahrenheit() : float
+    public function getTempFahrenheit() : ?float
     {
         return $this->tempFahrenheit;
     }
@@ -284,15 +285,15 @@ class Hour implements ToArrayInterface
     /**
      * @return boolean|null
      */
-    public function getIsDay() : boolean
+    public function getIsDay() : ?boolean
     {
         return $this->isDay;
     }
 
     /**
-     * @return \Apixu\Response\CurrentCondition
+     * @return CurrentCondition
      */
-    public function getCondition() : \Apixu\Response\CurrentCondition
+    public function getCondition() : CurrentCondition
     {
         return $this->condition;
     }
@@ -300,7 +301,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getWindMPH() : float
+    public function getWindMPH() : ?float
     {
         return $this->windMPH;
     }
@@ -308,7 +309,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getWindKMH() : float
+    public function getWindKMH() : ?float
     {
         return $this->windKMH;
     }
@@ -316,7 +317,7 @@ class Hour implements ToArrayInterface
     /**
      * @return int|null
      */
-    public function getWindDegree() : int
+    public function getWindDegree() : ?int
     {
         return $this->windDegree;
     }
@@ -324,7 +325,7 @@ class Hour implements ToArrayInterface
     /**
      * @return string|null
      */
-    public function getWindDirection() : string
+    public function getWindDirection() : ?string
     {
         return $this->windDirection;
     }
@@ -332,7 +333,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getPressureMB() : float
+    public function getPressureMB() : ?float
     {
         return $this->pressureMB;
     }
@@ -340,7 +341,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getPressureIN() : float
+    public function getPressureIN() : ?float
     {
         return $this->pressureIN;
     }
@@ -348,7 +349,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getPrecipMM() : float
+    public function getPrecipMM() : ?float
     {
         return $this->precipMM;
     }
@@ -356,7 +357,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getPrecipIN() : float
+    public function getPrecipIN() : ?float
     {
         return $this->precipIN;
     }
@@ -364,7 +365,7 @@ class Hour implements ToArrayInterface
     /**
      * @return int|null
      */
-    public function getHumidity() : int
+    public function getHumidity() : ?int
     {
         return $this->humidity;
     }
@@ -372,7 +373,7 @@ class Hour implements ToArrayInterface
     /**
      * @return int|null
      */
-    public function getCloud() : int
+    public function getCloud() : ?int
     {
         return $this->cloud;
     }
@@ -380,7 +381,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getFeelsLikeCelsius() : float
+    public function getFeelsLikeCelsius() : ?float
     {
         return $this->feelsLikeCelsius;
     }
@@ -388,7 +389,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getFeelsLikeFahrenheit() : float
+    public function getFeelsLikeFahrenheit() : ?float
     {
         return $this->feelsLikeFahrenheit;
     }
@@ -396,7 +397,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getWindChillCelsius() : float
+    public function getWindChillCelsius() : ?float
     {
         return $this->windChillCelsius;
     }
@@ -404,7 +405,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getWindChillFahrenheit() : float
+    public function getWindChillFahrenheit() : ?float
     {
         return $this->windChillFahrenheit;
     }
@@ -412,7 +413,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getHeatIndexCelsius() : float
+    public function getHeatIndexCelsius() : ?float
     {
         return $this->heatIndexCelsius;
     }
@@ -420,7 +421,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getHeatIndexFahrenheit() : float
+    public function getHeatIndexFahrenheit() : ?float
     {
         return $this->heatIndexFahrenheit;
     }
@@ -428,7 +429,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getDewPointCelsius() : float
+    public function getDewPointCelsius() : ?float
     {
         return $this->dewPointCelsius;
     }
@@ -436,7 +437,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getDewPointFahrenheit() : float
+    public function getDewPointFahrenheit() : ?float
     {
         return $this->dewPointFahrenheit;
     }
@@ -444,7 +445,7 @@ class Hour implements ToArrayInterface
     /**
      * @return boolean|null
      */
-    public function getWillItRain() : boolean
+    public function getWillItRain() : ?boolean
     {
         return $this->willItRain;
     }
@@ -452,7 +453,7 @@ class Hour implements ToArrayInterface
     /**
      * @return string|null
      */
-    public function getChanceOfRain() : string
+    public function getChanceOfRain() : ?string
     {
         return $this->chanceOfRain;
     }
@@ -460,7 +461,7 @@ class Hour implements ToArrayInterface
     /**
      * @return boolean|null
      */
-    public function getWillItSnow() : boolean
+    public function getWillItSnow() : ?boolean
     {
         return $this->willItSnow;
     }
@@ -468,7 +469,7 @@ class Hour implements ToArrayInterface
     /**
      * @return string|null
      */
-    public function getChanceOfSnow() : string
+    public function getChanceOfSnow() : ?string
     {
         return $this->chanceOfSnow;
     }
@@ -476,7 +477,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getVisKM() : float
+    public function getVisKM() : ?float
     {
         return $this->visKM;
     }
@@ -484,7 +485,7 @@ class Hour implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getVisMiles() : float
+    public function getVisMiles() : ?float
     {
         return $this->visMiles;
     }

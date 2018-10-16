@@ -10,7 +10,7 @@ class Astro implements ToArrayInterface
     use ToArrayTrait;
 
     /**
-     * @var null|string
+     * @var string|null
      *
      * @Serializer\Property("sunrise")
      * @Serializer\Type("string")
@@ -18,7 +18,7 @@ class Astro implements ToArrayInterface
     private $sunrise;
 
     /**
-     * @var null|string
+     * @var string|null
      *
      * @Serializer\Property("sunset")
      * @Serializer\Type("string")
@@ -26,7 +26,7 @@ class Astro implements ToArrayInterface
     private $sunset;
 
     /**
-     * @var null|string
+     * @var string|null
      *
      * @Serializer\Property("moonrise")
      * @Serializer\Type("string")
@@ -34,7 +34,7 @@ class Astro implements ToArrayInterface
     private $moonrise;
 
     /**
-     * @var null|string
+     * @var string|null
      *
      * @Serializer\Property("moonset")
      * @Serializer\Type("string")
@@ -42,33 +42,33 @@ class Astro implements ToArrayInterface
     private $moonset;
 
     /**
-     * @return null|string
+     * @return string|null
      */
-    public function getSunrise() : string
+    public function getSunrise() : ?string
     {
         return $this->sunrise;
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
-    public function getSunset() : string
+    public function getSunset() : ?string
     {
         return $this->sunset;
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
-    public function getMoonrise() : string
+    public function getMoonrise() : ?string
     {
         return $this->moonrise;
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
-    public function getMoonset() : string
+    public function getMoonset() : ?string
     {
         return $this->moonset;
     }

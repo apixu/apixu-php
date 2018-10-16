@@ -82,11 +82,11 @@ class Location implements ToArrayInterface
     private $localtime;
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getId() : ?int
     {
-        return $this->id; // must be null for current
+        return $this->id;
     }
 
     /**
@@ -130,25 +130,25 @@ class Location implements ToArrayInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getTimezone() : ?string
+    public function getTimezone() : string
     {
         return $this->timezone;
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getLocaltimeEpoch() : ?int
+    public function getLocaltimeEpoch() : int
     {
         return $this->localtimeEpoch;
     }
 
     /**
-     * @return \DateTime|null
+     * @return \DateTime
      */
-    public function getLocaltime() : ?\DateTime
+    public function getLocaltime() : \DateTime
     {
         return $this->localtime;
     }

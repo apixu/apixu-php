@@ -25,4 +25,16 @@ try {
     die($e->getMessage());
 }
 
+/** @var \Apixu\Response\Forecast\ForecastDay $forecastDay */
+foreach ($forecast->getForecast()->getForecastDay() as $forecastDay) {
+    $date = $forecastDay->getDate();
+    if ($date !== null) {
+        echo $date->format('Y-m-d'); echo "\n";
+    }
+    echo $forecastDay->getDateEpoch(); echo "\n";
+    echo $forecastDay->getDay()->getMaxTempCelsius(); echo "\n";
+    echo $forecastDay->getAstro()->getSunrise(); echo "\n";
+}
+
+
 echo '<pre>';print_r($forecast->toArray());exit;

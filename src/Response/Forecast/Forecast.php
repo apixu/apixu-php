@@ -12,7 +12,7 @@ class Forecast implements ToArrayInterface
     use ToArrayTrait;
 
     /**
-     * @var Location|null
+     * @var Location
      *
      * @Serializer\Property("location")
      * @Serializer\Type("Apixu\Response\Location")
@@ -20,7 +20,7 @@ class Forecast implements ToArrayInterface
     private $location;
 
     /**
-     * @var Current|null
+     * @var Current
      *
      * @Serializer\Property("current")
      * @Serializer\Type("Apixu\Response\Current")
@@ -28,7 +28,7 @@ class Forecast implements ToArrayInterface
     private $current;
 
     /**
-     * @var ForecastWeather|null
+     * @var ForecastWeather
      *
      * @Serializer\Property("forecast")
      * @Serializer\Type("Apixu\Response\Forecast\ForecastWeather")
@@ -36,7 +36,7 @@ class Forecast implements ToArrayInterface
     private $forecast;
 
     /**
-     * @return Location|null
+     * @return Location
      */
     public function getLocation() : Location
     {
@@ -44,7 +44,7 @@ class Forecast implements ToArrayInterface
     }
 
     /**
-     * @return Current|null
+     * @return Current
      */
     public function getCurrent() : Current
     {
@@ -52,7 +52,7 @@ class Forecast implements ToArrayInterface
     }
 
     /**
-     * @return ForecastWeather|null
+     * @return ForecastWeather
      */
     public function getForecast() : ForecastWeather
     {

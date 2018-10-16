@@ -11,7 +11,7 @@ class ForecastDay implements ToArrayInterface
     use ToArrayTrait;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @Serializer\Property("date")
      * @Serializer\Type("DateTime", "Y-m-d")
@@ -19,7 +19,7 @@ class ForecastDay implements ToArrayInterface
     private $date;
 
     /**
-     * @var int
+     * @var int|null
      *
      * @Serializer\Property("date_epoch")
      * @Serializer\Type("int")
@@ -51,17 +51,17 @@ class ForecastDay implements ToArrayInterface
     private $hour;
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getDate() : \DateTime
+    public function getDate() : ?\DateTime
     {
         return $this->date;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getDateEpoch() : int
+    public function getDateEpoch() : ?int
     {
         return $this->dateEpoch;
     }

@@ -10,7 +10,7 @@ class Current implements ToArrayInterface
     use ToArrayTrait;
 
     /**
-     * @var int
+     * @var int|null
      *
      * @Serializer\Property("last_updated_epoch")
      * @Serializer\Type("int")
@@ -18,7 +18,7 @@ class Current implements ToArrayInterface
     private $lastUpdatedEpoch;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @Serializer\Property("last_updated")
      * @Serializer\Type("DateTime", "Y-m-d H:i")
@@ -26,7 +26,7 @@ class Current implements ToArrayInterface
     private $lastUpdated;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("temp_c")
      * @Serializer\Type("float")
@@ -34,7 +34,7 @@ class Current implements ToArrayInterface
     private $tempCelsius;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("temp_f")
      * @Serializer\Type("float")
@@ -42,7 +42,7 @@ class Current implements ToArrayInterface
     private $tempFahrenheit;
 
     /**
-     * @var bool
+     * @var bool|null
      *
      * @Serializer\Property("is_day")
      * @Serializer\Type("bool")
@@ -58,7 +58,7 @@ class Current implements ToArrayInterface
     private $condition;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("wind_mph")
      * @Serializer\Type("float")
@@ -66,7 +66,7 @@ class Current implements ToArrayInterface
     private $windMPH;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("wind_kph")
      * @Serializer\Type("float")
@@ -74,7 +74,7 @@ class Current implements ToArrayInterface
     private $windKPH;
 
     /**
-     * @var int
+     * @var int|null
      *
      * @Serializer\Property("wind_degree")
      * @Serializer\Type("int")
@@ -82,7 +82,7 @@ class Current implements ToArrayInterface
     private $windDegree;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Serializer\Property("wind_dir")
      * @Serializer\Type("string")
@@ -90,7 +90,7 @@ class Current implements ToArrayInterface
     private $windDirection;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("pressure_mb")
      * @Serializer\Type("float")
@@ -98,7 +98,7 @@ class Current implements ToArrayInterface
     private $pressureMB;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("pressure_in")
      * @Serializer\Type("float")
@@ -106,7 +106,7 @@ class Current implements ToArrayInterface
     private $pressureIN;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("precip_mm")
      * @Serializer\Type("float")
@@ -114,7 +114,7 @@ class Current implements ToArrayInterface
     private $precipMM;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("precip_in")
      * @Serializer\Type("float")
@@ -122,7 +122,7 @@ class Current implements ToArrayInterface
     private $precipIN;
 
     /**
-     * @var int
+     * @var int|null
      *
      * @Serializer\Property("humidity")
      * @Serializer\Type("int")
@@ -130,7 +130,7 @@ class Current implements ToArrayInterface
     private $humidity;
 
     /**
-     * @var int
+     * @var int|null
      *
      * @Serializer\Property("cloud")
      * @Serializer\Type("int")
@@ -138,7 +138,7 @@ class Current implements ToArrayInterface
     private $cloud;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("feelslike_c")
      * @Serializer\Type("float")
@@ -146,7 +146,7 @@ class Current implements ToArrayInterface
     private $feelsLikeCelsius;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("feelslike_f")
      * @Serializer\Type("float")
@@ -154,7 +154,7 @@ class Current implements ToArrayInterface
     private $feelsLikeFahrenheit;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("vis_km")
      * @Serializer\Type("float")
@@ -162,7 +162,7 @@ class Current implements ToArrayInterface
     private $visKM;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @Serializer\Property("vis_miles")
      * @Serializer\Type("float")
@@ -170,41 +170,41 @@ class Current implements ToArrayInterface
     private $visMiles;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getLastUpdatedEpoch() : int
+    public function getLastUpdatedEpoch() : ?int
     {
         return $this->lastUpdatedEpoch;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getLastUpdated() : \DateTime
+    public function getLastUpdated() : ?\DateTime
     {
         return $this->lastUpdated;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getTempCelsius() : float
+    public function getTempCelsius() : ?float
     {
         return $this->tempCelsius;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getTempFahrenheit() : float
+    public function getTempFahrenheit() : ?float
     {
         return $this->tempFahrenheit;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isDay() : bool
+    public function isDay() : ?bool
     {
         return $this->isDay;
     }
@@ -218,113 +218,113 @@ class Current implements ToArrayInterface
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getWindMPH() : float
+    public function getWindMPH() : ?float
     {
         return $this->windMPH;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getWindKPH() : float
+    public function getWindKPH() : ?float
     {
         return $this->windKPH;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getWindDegree() : int
+    public function getWindDegree() : ?int
     {
         return $this->windDegree;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getWindDirection() : string
+    public function getWindDirection() : ?string
     {
         return $this->windDirection;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getPressureMB() : float
+    public function getPressureMB() : ?float
     {
         return $this->pressureMB;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getPressureIN() : float
+    public function getPressureIN() : ?float
     {
         return $this->pressureIN;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getPrecipMM() : float
+    public function getPrecipMM() : ?float
     {
         return $this->precipMM;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getPrecipIN() : float
+    public function getPrecipIN() : ?float
     {
         return $this->precipIN;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getHumidity() : int
+    public function getHumidity() : ?int
     {
         return $this->humidity;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCloud() : int
+    public function getCloud() : ?int
     {
         return $this->cloud;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getFeelsLikeCelsius() : float
+    public function getFeelsLikeCelsius() : ?float
     {
         return $this->feelsLikeCelsius;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getFeelsLikeFahrenheit() : float
+    public function getFeelsLikeFahrenheit() : ?float
     {
         return $this->feelsLikeFahrenheit;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getVisKM() : float
+    public function getVisKM() : ?float
     {
         return $this->visKM;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getVisMiles() : float
+    public function getVisMiles() : ?float
     {
         return $this->visMiles;
     }

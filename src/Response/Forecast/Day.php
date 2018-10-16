@@ -115,7 +115,7 @@ class Day implements ToArrayInterface
     private $avgHumidity;
 
     /**
-     * @var CurrentCondition|null
+     * @var CurrentCondition
      *
      * @Serializer\Property("condition")
      * @Serializer\Type("Apixu\Response\CurrentCondition")
@@ -133,7 +133,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getMaxTempCelsius() : float
+    public function getMaxTempCelsius() : ?float
     {
         return $this->maxTempCelsius;
     }
@@ -141,7 +141,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getMaxTempFahrenheit() : float
+    public function getMaxTempFahrenheit() : ?float
     {
         return $this->maxTempFahrenheit;
     }
@@ -149,7 +149,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getMinTempCelsius() : float
+    public function getMinTempCelsius() : ?float
     {
         return $this->minTempCelsius;
     }
@@ -157,7 +157,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getMinTempFahrenheit() : float
+    public function getMinTempFahrenheit() : ?float
     {
         return $this->minTempFahrenheit;
     }
@@ -165,7 +165,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getAvgTempCelsius() : float
+    public function getAvgTempCelsius() : ?float
     {
         return $this->avgTempCelsius;
     }
@@ -173,7 +173,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getAvgTempFahrenheit() : float
+    public function getAvgTempFahrenheit() : ?float
     {
         return $this->avgTempFahrenheit;
     }
@@ -181,7 +181,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getMaxWindMPH() : float
+    public function getMaxWindMPH() : ?float
     {
         return $this->maxWindMPH;
     }
@@ -189,7 +189,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getMaxWindKMH() : float
+    public function getMaxWindKMH() : ?float
     {
         return $this->maxWindKMH;
     }
@@ -197,7 +197,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getTotalPrecipMM() : float
+    public function getTotalPrecipMM() : ?float
     {
         return $this->totalPrecipMM;
     }
@@ -205,7 +205,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getTotalPrecipIN() : float
+    public function getTotalPrecipIN() : ?float
     {
         return $this->totalPrecipIN;
     }
@@ -213,7 +213,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getAvgVisKM() : float
+    public function getAvgVisKM() : ?float
     {
         return $this->avgVisKM;
     }
@@ -221,7 +221,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getAvgVisMiles() : float
+    public function getAvgVisMiles() : ?float
     {
         return $this->avgVisMiles;
     }
@@ -229,13 +229,13 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getAvgHumidity() : float
+    public function getAvgHumidity() : ?float
     {
         return $this->avgHumidity;
     }
 
     /**
-     * @return CurrentCondition|null
+     * @return CurrentCondition
      */
     public function getCondition() : CurrentCondition
     {
@@ -245,7 +245,7 @@ class Day implements ToArrayInterface
     /**
      * @return float|null
      */
-    public function getUV() : float
+    public function getUV() : ?float
     {
         return $this->uV;
     }
