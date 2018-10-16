@@ -27,7 +27,7 @@ class ForecastDay implements ToArrayInterface
     private $dateEpoch;
 
     /**
-     * @var Day
+     * @var Day|null
      *
      * @Serializer\Property("day")
      * @Serializer\Type("Apixu\Response\Forecast\Day")
@@ -35,7 +35,7 @@ class ForecastDay implements ToArrayInterface
     private $day;
 
     /**
-     * @var Astro
+     * @var Astro|null
      *
      * @Serializer\Property("astro")
      * @Serializer\Type("Apixu\Response\Forecast\Astro")
@@ -43,7 +43,7 @@ class ForecastDay implements ToArrayInterface
     private $astro;
 
     /**
-     * @var Collection[Apixu\Response\Forecast\Hour]
+     * @var Collection[Apixu\Response\Forecast\Hour]|null
      *
      * @Serializer\Property("hour")
      * @Serializer\Type("collection[Apixu\Response\Forecast\Hour]")
@@ -67,25 +67,25 @@ class ForecastDay implements ToArrayInterface
     }
 
     /**
-     * @return Day
+     * @return Day|null
      */
-    public function getDay() : Day
+    public function getDay() : ?Day
     {
         return $this->day;
     }
 
     /**
-     * @return Astro
+     * @return Astro|null
      */
-    public function getAstro() : Astro
+    public function getAstro() : ?Astro
     {
         return $this->astro;
     }
 
     /**
-     * @return Collection[Apixu\Response\Forecast\Hour]
+     * @return Collection[Apixu\Response\Forecast\Hour]|null
      */
-    public function getHour() : Collection
+    public function getHour() : ?Collection
     {
         return $this->hour;
     }

@@ -32,9 +32,9 @@ class ForecastDayTest extends AbstractGettersTest
         $vars2 = [
             'date' => null,
             'dateEpoch' => null,
-            'day' => new Day(),
-            'astro' => new Astro(),
-            'hour' => new Collection([]),
+            'day' => null,
+            'astro' => null,
+            'hour' => null,
         ];
 
         return [

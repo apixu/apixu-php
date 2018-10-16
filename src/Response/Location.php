@@ -58,7 +58,7 @@ class Location implements ToArrayInterface
     private $lon;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Serializer\Property("tz_id")
      * @Serializer\Type("string")
@@ -66,7 +66,7 @@ class Location implements ToArrayInterface
     private $timezone;
 
     /**
-     * @var int
+     * @var int|null
      *
      * @Serializer\Type("int")
      * @Serializer\Property("localtime_epoch")
@@ -74,7 +74,7 @@ class Location implements ToArrayInterface
     private $localtimeEpoch;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @Serializer\Property("localtime")
      * @Serializer\Type("DateTime", "Y-m-d H:i")
@@ -130,25 +130,25 @@ class Location implements ToArrayInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTimezone() : string
+    public function getTimezone() : ?string
     {
         return $this->timezone;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getLocaltimeEpoch() : int
+    public function getLocaltimeEpoch() : ?int
     {
         return $this->localtimeEpoch;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getLocaltime() : \DateTime
+    public function getLocaltime() : ?\DateTime
     {
         return $this->localtime;
     }

@@ -18,7 +18,7 @@ class LocationTest extends AbstractGettersTest
     public function vars() : array
     {
         $vars = [
-            'id' => null,
+            'id' => 1,
             'name' => 'London',
             'region' => 'Region',
             'country' => 'UK',
@@ -29,8 +29,17 @@ class LocationTest extends AbstractGettersTest
             'localtime' => new \DateTime(),
         ];
 
-        $vars2 = $vars;
-        $vars2['id'] = 1;
+        $vars2 = [
+            'id' => null,
+            'name' => 'London',
+            'region' => 'Region',
+            'country' => 'UK',
+            'lat' => 2.0,
+            'lon' => 45.0,
+            'timezone' => null,
+            'localtimeEpoch' => null,
+            'localtime' => null,
+        ];
 
         return [
             [$vars],
