@@ -7,7 +7,7 @@ use Apixu\Apixu;
 use Apixu\ApixuInterface;
 use Apixu\Config;
 use Apixu\Exception\ApixuException;
-use Apixu\Exception\InvalidArgumentException;
+use Apixu\Exception\InvalidQueryException;
 use Apixu\Response\Condition;
 use Apixu\Response\Conditions;
 use Apixu\Response\CurrentWeather;
@@ -101,7 +101,7 @@ class ApixuTest extends TestCase
             $this->fail('No exception was thrown');
         } catch (\Exception $e) {
             $this->assertInstanceOf(ApixuException::class, $e);
-            $this->assertInstanceOf(InvalidArgumentException::class, $e);
+            $this->assertInstanceOf(InvalidQueryException::class, $e);
         }
     }
 
@@ -113,7 +113,7 @@ class ApixuTest extends TestCase
             $this->fail('No exception was thrown');
         } catch (\Exception $e) {
             $this->assertInstanceOf(ApixuException::class, $e);
-            $this->assertInstanceOf(InvalidArgumentException::class, $e);
+            $this->assertInstanceOf(InvalidQueryException::class, $e);
         }
     }
 

@@ -3,8 +3,7 @@
 namespace Apixu;
 
 use Apixu\Api\Api;
-use Apixu\Exception\ApixuException;
-use Apixu\Exception\InvalidArgumentException;
+use Apixu\Exception\ApiKeyMissingException;
 use GuzzleHttp\Client;
 use Serializer\SerializerBuilder;
 
@@ -26,12 +25,12 @@ final class ApixuBuilder
     /**
      * @param string $apiKey
      * @return ApixuBuilder
-     * @throws InvalidArgumentException
+     * @throws ApiKeyMissingException
      */
     public function setApiKey(string $apiKey) : ApixuBuilder
     {
         if (trim($apiKey) === '') {
-            throw new InvalidArgumentException('API key not set.');
+            throw new ApiKeyMissingException('API key not set.');
         }
 
         $this->apiKey = $apiKey;
@@ -41,21 +40,16 @@ final class ApixuBuilder
 
     /**
      * @return ApixuInterface
-     * @throws ApixuException
      */
     public function build() : ApixuInterface
     {
-        try {
-            $httpClient = new Client([
-                'timeout' => Config::HTTP_TIMEOUT,
-            ]);
+        $httpClient = new Client([
+            'timeout' => Config::HTTP_TIMEOUT,
+        ]);
 
-            $serializer = SerializerBuilder::instance()
-                ->setFormat(Config::FORMAT)
-                ->build();
-        } catch (\Exception $e) {
-            throw new ApixuException(sprintf('Build error: %s', $e->getMessage()), $e->getCode(), $e);
-        }
+        $serializer = SerializerBuilder::instance()
+            ->setFormat(Config::FORMAT)
+            ->build();
 
         $api = new Api($this->apiKey, $httpClient);
 

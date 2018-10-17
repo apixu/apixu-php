@@ -3,7 +3,7 @@
 namespace Apixu;
 
 use Apixu\Api\ApiInterface;
-use Apixu\Exception\InvalidArgumentException;
+use Apixu\Exception\InvalidQueryException;
 use Apixu\Response\Conditions;
 use Apixu\Response\CurrentWeather;
 use Apixu\Response\Forecast\Forecast;
@@ -91,18 +91,18 @@ class Apixu implements ApixuInterface
 
     /**
      * @param string $query
-     * @throws InvalidArgumentException
+     * @throws InvalidQueryException
      */
     private function validateQuery(string $query)
     {
         $query = trim($query);
 
         if ($query === '') {
-            throw new InvalidArgumentException('Query is missing');
+            throw new InvalidQueryException('Query is missing');
         }
 
         if (strlen($query) > Config::MAX_QUERY_LENGTH) {
-            throw new InvalidArgumentException(
+            throw new InvalidQueryException(
                 sprintf('Query exceeds maximum length (%d)', Config::MAX_QUERY_LENGTH)
             );
         }

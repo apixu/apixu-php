@@ -5,7 +5,7 @@ namespace Apixu\Tests;
 use Apixu\ApixuBuilder;
 use Apixu\ApixuInterface;
 use Apixu\Exception\ApixuException;
-use Apixu\Exception\InvalidArgumentException;
+use Apixu\Exception\ApiKeyMissingException;
 use PHPUnit\Framework\TestCase;
 
 class ApixuBuilderTest extends TestCase
@@ -23,7 +23,7 @@ class ApixuBuilderTest extends TestCase
             $this->fail('No exception was thrown');
         } catch (\Exception $e) {
             $this->assertInstanceOf(ApixuException::class, $e);
-            $this->assertInstanceOf(InvalidArgumentException::class, $e);
+            $this->assertInstanceOf(ApiKeyMissingException::class, $e);
         }
     }
 }
