@@ -36,5 +36,4 @@ foreach ($forecast->getForecast()->getForecastDay() as $forecastDay) {
     echo $forecastDay->getAstro()->getSunrise(); echo "\n";
 }
 
-
 echo '<pre>';print_r($forecast->toArray());exit;
