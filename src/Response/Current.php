@@ -47,7 +47,7 @@ class Current
     /**
      * @var \Apixu\Response\CurrentCondition
      *
-     * @Serializer\Property("Condition")
+     * @Serializer\Property("condition")
      * @Serializer\Type("Apixu\Response\CurrentCondition")
      */
     private $condition;
