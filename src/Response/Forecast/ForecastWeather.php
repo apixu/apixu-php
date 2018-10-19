@@ -3,13 +3,9 @@
 namespace Apixu\Response\Forecast;
 
 use Serializer\Collection;
-use Serializer\ToArray\ToArrayInterface;
-use Serializer\ToArray\ToArrayTrait;
 
-class ForecastWeather implements ToArrayInterface
+class ForecastWeather
 {
-    use ToArrayTrait;
-
     /**
      * @var Collection[Apixu\Response\Forecast\ForecastDay]
      *

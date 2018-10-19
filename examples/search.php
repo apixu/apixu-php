@@ -24,4 +24,4 @@ try {
     die($e->getMessage());
 }
 
-print_r($search->toArray());
+print_r(\Serializer\SerializerBuilder::instance()->build()->toArray($search));

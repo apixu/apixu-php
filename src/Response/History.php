@@ -3,13 +3,9 @@
 namespace Apixu\Response;
 
 use Apixu\Response\Forecast\ForecastWeather;
-use Serializer\ToArray\ToArrayInterface;
-use Serializer\ToArray\ToArrayTrait;
 
-class History implements ToArrayInterface
+class History
 {
-    use ToArrayTrait;
-
     /**
      * @var Location
      *

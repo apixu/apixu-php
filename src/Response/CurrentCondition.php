@@ -2,13 +2,8 @@
 
 namespace Apixu\Response;
 
-use Serializer\ToArray\ToArrayInterface;
-use Serializer\ToArray\ToArrayTrait;
-
-class CurrentCondition implements ToArrayInterface
+class CurrentCondition
 {
-    use ToArrayTrait;
-
     /**
      * @var string|null
      *

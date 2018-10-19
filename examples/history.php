@@ -26,4 +26,4 @@ try {
     die($e->getMessage());
 }
 
-print_r($history->toArray());
+print_r(\Serializer\SerializerBuilder::instance()->build()->toArray($history));

@@ -33,4 +33,4 @@ foreach ($conditions as $condition) {
     );
 }
 
-print_r($conditions->toArray());
+print_r(\Serializer\SerializerBuilder::instance()->build()->toArray($conditions));

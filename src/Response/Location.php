@@ -2,13 +2,8 @@
 
 namespace Apixu\Response;
 
-use Serializer\ToArray\ToArrayInterface;
-use Serializer\ToArray\ToArrayTrait;
-
-class Location implements ToArrayInterface
+class Location
 {
-    use ToArrayTrait;
-
     /**
      * @var int|null
      *
@@ -56,6 +51,14 @@ class Location implements ToArrayInterface
      * @Serializer\Type("float")
      */
     private $lon;
+
+    /**
+     * @var string|null
+     *
+     * @Serializer\Property("url")
+     * @Serializer\Type("string")
+     */
+    private $url;
 
     /**
      * @var string|null
@@ -127,6 +130,14 @@ class Location implements ToArrayInterface
     public function getLon() : float
     {
         return $this->lon;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getUrl() : ?string
+    {
+        return $this->url;
     }
 
     /**

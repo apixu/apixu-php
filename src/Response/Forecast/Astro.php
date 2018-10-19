@@ -2,13 +2,8 @@
 
 namespace Apixu\Response\Forecast;
 
-use Serializer\ToArray\ToArrayInterface;
-use Serializer\ToArray\ToArrayTrait;
-
-class Astro implements ToArrayInterface
+class Astro
 {
-    use ToArrayTrait;
-
     /**
      * @var string|null
      *

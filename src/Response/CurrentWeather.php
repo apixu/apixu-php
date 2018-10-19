@@ -2,13 +2,8 @@
 
 namespace Apixu\Response;
 
-use Serializer\ToArray\ToArrayInterface;
-use Serializer\ToArray\ToArrayTrait;
-
-class CurrentWeather implements ToArrayInterface
+class CurrentWeather
 {
-    use ToArrayTrait;
-
     /**
      * @var Location
      *

@@ -4,13 +4,9 @@ namespace Apixu\Response\Forecast;
 
 use Apixu\Response\Current;
 use Apixu\Response\Location;
-use Serializer\ToArray\ToArrayInterface;
-use Serializer\ToArray\ToArrayTrait;
 
-class Forecast implements ToArrayInterface
+class Forecast
 {
-    use ToArrayTrait;
-
     /**
      * @var Location
      *

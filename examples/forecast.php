@@ -36,4 +36,4 @@ foreach ($forecast->getForecast()->getForecastDay() as $forecastDay) {
     echo $forecastDay->getAstro()->getSunrise(); echo "\n";
 }
 
-echo '<pre>';print_r($forecast->toArray());exit;
+echo '<pre>';print_r(\Serializer\SerializerBuilder::instance()->build()->toArray($forecast));exit;

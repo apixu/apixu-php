@@ -5,10 +5,16 @@ namespace Apixu;
 use Apixu\Api\Api;
 use Apixu\Exception\ApiKeyMissingException;
 use GuzzleHttp\Client;
+use Serializer\Format\UnknownFormatException;
 use Serializer\SerializerBuilder;
 
 final class ApixuBuilder
 {
+    /**
+     * @var string
+     */
+    private $apiKey;
+
     /**
      * @return ApixuBuilder
      */
@@ -16,11 +22,6 @@ final class ApixuBuilder
     {
         return new static();
     }
-
-    /**
-     * @var string
-     */
-    private $apiKey;
 
     /**
      * @param string $apiKey
@@ -40,6 +41,7 @@ final class ApixuBuilder
 
     /**
      * @return ApixuInterface
+     * @throws UnknownFormatException
      */
     public function build() : ApixuInterface
     {

@@ -38,4 +38,4 @@ echo sprintf(
     $current->getCurrent()->getHumidity()
 );
 
-print_r($current->toArray());
+print_r(\Serializer\SerializerBuilder::instance()->build()->toArray($current));

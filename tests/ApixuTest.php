@@ -17,7 +17,6 @@ use Apixu\Response\Search;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use Serializer\SerializerInterface;
-use Serializer\ToArray\ToArrayInterface;
 
 class ApixuTest extends TestCase
 {
@@ -63,7 +62,6 @@ class ApixuTest extends TestCase
         $this->assertCount(2, $conditions);
         $this->assertContainsOnlyInstancesOf(Condition::class, $conditions);
         $this->assertEquals($expectedObject, $conditions);
-        $this->assertInstanceOf(ToArrayInterface::class, $conditions);
     }
 
     public function testCurrent()
@@ -90,7 +88,6 @@ class ApixuTest extends TestCase
         /** @var CurrentWeather $current */
         $current = $this->apixu->current('query');
         $this->assertEquals($expectedObject, $current);
-        $this->assertInstanceOf(ToArrayInterface::class, $current);
     }
 
     public function testCurrentWithMissingQuery()
@@ -141,7 +138,6 @@ class ApixuTest extends TestCase
         /** @var Search $search */
         $search = $this->apixu->search('query');
         $this->assertEquals($expectedObject, $search);
-        $this->assertInstanceOf(ToArrayInterface::class, $search);
     }
 
     public function testForecast()
@@ -168,7 +164,6 @@ class ApixuTest extends TestCase
         /** @var Forecast $forecast */
         $forecast = $this->apixu->forecast('query', 1);
         $this->assertEquals($expectedObject, $forecast);
-        $this->assertInstanceOf(ToArrayInterface::class, $forecast);
     }
 
     public function testHistory()
@@ -198,6 +193,5 @@ class ApixuTest extends TestCase
         /** @var History $forecast */
         $forecast = $this->apixu->history($query, $since);
         $this->assertEquals($expectedObject, $forecast);
-        $this->assertInstanceOf(ToArrayInterface::class, $forecast);
     }
 }

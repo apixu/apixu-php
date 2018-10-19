@@ -2,13 +2,8 @@
 
 namespace Apixu\Response;
 
-use Serializer\ToArray\ToArrayInterface;
-use Serializer\ToArray\ToArrayTrait;
-
-class Condition implements ToArrayInterface
+class Condition
 {
-    use ToArrayTrait;
-
     /**
      * @var int
      *

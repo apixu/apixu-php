@@ -3,13 +3,9 @@
 namespace Apixu\Response\Forecast;
 
 use Apixu\Response\CurrentCondition;
-use Serializer\ToArray\ToArrayInterface;
-use Serializer\ToArray\ToArrayTrait;
 
-class Hour implements ToArrayInterface
+class Hour
 {
-    use ToArrayTrait;
-
     /**
      * @var int|null
      *
