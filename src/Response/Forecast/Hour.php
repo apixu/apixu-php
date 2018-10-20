@@ -45,11 +45,11 @@ class Hour
     /**
      * @var bool|null
      *
-     * @Serializer\Property("bool")
+     * @Serializer\Property("is_day")
      * @Serializer\Type("float")
      * @Serializer\IgnoreNull()
      */
-    private $isDay;
+    private $day;
 
     /**
      * @var CurrentCondition
@@ -143,7 +143,7 @@ class Hour
     /**
      * @var int|null
      *
-     * @Serializer\Property("int")
+     * @Serializer\Property("cloud")
      * @Serializer\Type("float")
      * @Serializer\IgnoreNull()
      */
@@ -310,9 +310,9 @@ class Hour
     /**
      * @return bool|null
      */
-    public function getIsDay() : ?bool
+    public function isDay() : ?bool
     {
-        return $this->isDay;
+        return $this->day;
     }
 
     /**
