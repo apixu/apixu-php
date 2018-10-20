@@ -84,7 +84,10 @@ class Apixu implements ApixuInterface
     public function history(string $query, \DateTime $since) : History
     {
         $this->validateQuery($query);
-        $response = $this->api->call('history', ['q' => $query, 'dt' => $since->format(self::HISTORY_SINCE_FORMAT)]);
+        $response = $this->api->call(
+            'history',
+            ['q' => $query, 'dt' => $since->format(self::HISTORY_SINCE_FORMAT)]
+        );
 
         return $this->getResponse($response, History::class);
     }
