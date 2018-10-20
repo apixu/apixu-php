@@ -23,6 +23,8 @@ class AstroTest extends AbstractGettersTest
             'sunset' => 'ss',
             'moonrise' => 'mr',
             'moonset' => 'ms',
+            'moonPhase' => 'mp',
+            'moonIllumination' => 'mi',
         ];
 
         $vars2 = [
@@ -30,6 +32,8 @@ class AstroTest extends AbstractGettersTest
             'sunset' => null,
             'moonrise' => null,
             'moonset' => null,
+            'moonPhase' => null,
+            'moonIllumination' => null,
         ];
 
         return [
