@@ -41,6 +41,24 @@ class Astro
     private $moonset;
 
     /**
+     * @var string|null
+     *
+     * @Serializer\Property("moon_phase")
+     * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
+     */
+    private $moonPhase;
+
+    /**
+     * @var string|null
+     *
+     * @Serializer\Property("moon_illumination")
+     * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
+     */
+    private $moonIllumination;
+
+    /**
      * @return string|null
      */
     public function getSunrise() : ?string
@@ -70,5 +88,21 @@ class Astro
     public function getMoonset() : ?string
     {
         return $this->moonset;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMoonPhase() : ?string
+    {
+        return $this->moonPhase;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMoonIllumination() : ?string
+    {
+        return $this->moonIllumination;
     }
 }
