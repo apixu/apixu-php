@@ -9,6 +9,7 @@ class Astro
      *
      * @Serializer\Property("sunrise")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $sunrise;
 
@@ -17,6 +18,7 @@ class Astro
      *
      * @Serializer\Property("sunset")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $sunset;
 
@@ -25,6 +27,7 @@ class Astro
      *
      * @Serializer\Property("moonrise")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $moonrise;
 
@@ -33,6 +36,7 @@ class Astro
      *
      * @Serializer\Property("moonset")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $moonset;
 

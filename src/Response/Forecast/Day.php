@@ -11,6 +11,7 @@ class Day
      *
      * @Serializer\Property("maxtemp_c")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $maxTempCelsius;
 
@@ -19,6 +20,7 @@ class Day
      *
      * @Serializer\Property("maxtemp_f")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $maxTempFahrenheit;
 
@@ -27,6 +29,7 @@ class Day
      *
      * @Serializer\Property("mintemp_c")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $minTempCelsius;
 
@@ -35,6 +38,7 @@ class Day
      *
      * @Serializer\Property("mintemp_f")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $minTempFahrenheit;
 
@@ -43,6 +47,7 @@ class Day
      *
      * @Serializer\Property("avgtemp_c")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $avgTempCelsius;
 
@@ -51,6 +56,7 @@ class Day
      *
      * @Serializer\Property("avgtemp_f")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $avgTempFahrenheit;
 
@@ -59,6 +65,7 @@ class Day
      *
      * @Serializer\Property("maxwind_mph")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $maxWindMPH;
 
@@ -67,6 +74,7 @@ class Day
      *
      * @Serializer\Property("maxwind_kph")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $maxWindKMH;
 
@@ -75,6 +83,7 @@ class Day
      *
      * @Serializer\Property("totalprecip_mm")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $totalPrecipMM;
 
@@ -83,6 +92,7 @@ class Day
      *
      * @Serializer\Property("totalprecip_in")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $totalPrecipIN;
 
@@ -91,6 +101,7 @@ class Day
      *
      * @Serializer\Property("avgvis_km")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $avgVisKM;
 
@@ -99,6 +110,7 @@ class Day
      *
      * @Serializer\Property("avgvis_miles")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $avgVisMiles;
 
@@ -107,6 +119,7 @@ class Day
      *
      * @Serializer\Property("avghumidity")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $avgHumidity;
 
@@ -115,6 +128,7 @@ class Day
      *
      * @Serializer\Property("condition")
      * @Serializer\Type("Apixu\Response\CurrentCondition")
+     * @Serializer\IgnoreNull()
      */
     private $condition;
 
@@ -123,6 +137,7 @@ class Day
      *
      * @Serializer\Property("uv")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $uV;
 

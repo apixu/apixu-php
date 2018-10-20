@@ -11,6 +11,7 @@ class Hour
      *
      * @Serializer\Property("time_epoch")
      * @Serializer\Type("int")
+     * @Serializer\IgnoreNull()
      */
     private $timeEpoch;
 
@@ -19,6 +20,7 @@ class Hour
      *
      * @Serializer\Property("time")
      * @Serializer\Type("DateTime", "Y-m-d H:i")
+     * @Serializer\IgnoreNull()
      */
     private $time;
 
@@ -27,6 +29,7 @@ class Hour
      *
      * @Serializer\Property("temp_c")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $tempCelsius;
 
@@ -35,6 +38,7 @@ class Hour
      *
      * @Serializer\Property("temp_f")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $tempFahrenheit;
 
@@ -43,6 +47,7 @@ class Hour
      *
      * @Serializer\Property("bool")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $isDay;
 
@@ -59,6 +64,7 @@ class Hour
      *
      * @Serializer\Property("wind_mph")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $windMPH;
 
@@ -67,6 +73,7 @@ class Hour
      *
      * @Serializer\Property("wind_kph")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $windKMH;
 
@@ -75,6 +82,7 @@ class Hour
      *
      * @Serializer\Property("int")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $windDegree;
 
@@ -83,6 +91,7 @@ class Hour
      *
      * @Serializer\Property("string")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $windDirection;
 
@@ -91,6 +100,7 @@ class Hour
      *
      * @Serializer\Property("pressure_mb")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $pressureMB;
 
@@ -99,6 +109,7 @@ class Hour
      *
      * @Serializer\Property("pressure_in")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $pressureIN;
 
@@ -107,6 +118,7 @@ class Hour
      *
      * @Serializer\Property("precip_mm")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $precipMM;
 
@@ -115,6 +127,7 @@ class Hour
      *
      * @Serializer\Property("precip_in")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $precipIN;
 
@@ -123,6 +136,7 @@ class Hour
      *
      * @Serializer\Property("humidity")
      * @Serializer\Type("int")
+     * @Serializer\IgnoreNull()
      */
     private $humidity;
 
@@ -131,6 +145,7 @@ class Hour
      *
      * @Serializer\Property("int")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $cloud;
 
@@ -139,6 +154,7 @@ class Hour
      *
      * @Serializer\Property("feelslike_c")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $feelsLikeCelsius;
 
@@ -147,6 +163,7 @@ class Hour
      *
      * @Serializer\Property("feelslike_f")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $feelsLikeFahrenheit;
 
@@ -155,6 +172,7 @@ class Hour
      *
      * @Serializer\Property("windchill_c")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $windChillCelsius;
 
@@ -163,6 +181,7 @@ class Hour
      *
      * @Serializer\Property("windchill_f")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $windChillFahrenheit;
 
@@ -171,6 +190,7 @@ class Hour
      *
      * @Serializer\Property("heatindex_c")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $heatIndexCelsius;
 
@@ -179,6 +199,7 @@ class Hour
      *
      * @Serializer\Property("heatindex_f")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $heatIndexFahrenheit;
 
@@ -187,6 +208,7 @@ class Hour
      *
      * @Serializer\Property("dewpoint_c")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $dewPointCelsius;
 
@@ -195,6 +217,7 @@ class Hour
      *
      * @Serializer\Property("dewpoint_f")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $dewPointFahrenheit;
 
@@ -203,6 +226,7 @@ class Hour
      *
      * @Serializer\Property("will_it_rain")
      * @Serializer\Type("bool")
+     * @Serializer\IgnoreNull()
      */
     private $willItRain;
 
@@ -211,6 +235,7 @@ class Hour
      *
      * @Serializer\Property("chance_of_rain")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $chanceOfRain;
 
@@ -219,6 +244,7 @@ class Hour
      *
      * @Serializer\Property("will_it_snow")
      * @Serializer\Type("bool")
+     * @Serializer\IgnoreNull()
      */
     private $willItSnow;
 
@@ -227,6 +253,7 @@ class Hour
      *
      * @Serializer\Property("chance_of_snow")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $chanceOfSnow;
 
@@ -235,6 +262,7 @@ class Hour
      *
      * @Serializer\Property("vis_km")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $visKM;
 
@@ -243,6 +271,7 @@ class Hour
      *
      * @Serializer\Property("vis_miles")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $visMiles;
 

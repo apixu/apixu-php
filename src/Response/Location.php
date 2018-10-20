@@ -9,6 +9,7 @@ class Location
      *
      * @Serializer\Property("id")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $id;
 
@@ -57,6 +58,7 @@ class Location
      *
      * @Serializer\Property("url")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $url;
 
@@ -65,6 +67,7 @@ class Location
      *
      * @Serializer\Property("tz_id")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $timezone;
 
@@ -73,6 +76,7 @@ class Location
      *
      * @Serializer\Type("int")
      * @Serializer\Property("localtime_epoch")
+     * @Serializer\IgnoreNull()
      */
     private $localtimeEpoch;
 
@@ -81,6 +85,7 @@ class Location
      *
      * @Serializer\Property("localtime")
      * @Serializer\Type("DateTime", "Y-m-d H:i")
+     * @Serializer\IgnoreNull()
      */
     private $localtime;
 

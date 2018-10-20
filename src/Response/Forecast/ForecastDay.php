@@ -11,6 +11,7 @@ class ForecastDay
      *
      * @Serializer\Property("date")
      * @Serializer\Type("DateTime", "Y-m-d")
+     * @Serializer\IgnoreNull()
      */
     private $date;
 
@@ -19,6 +20,7 @@ class ForecastDay
      *
      * @Serializer\Property("date_epoch")
      * @Serializer\Type("int")
+     * @Serializer\IgnoreNull()
      */
     private $dateEpoch;
 
@@ -27,6 +29,7 @@ class ForecastDay
      *
      * @Serializer\Property("day")
      * @Serializer\Type("Apixu\Response\Forecast\Day")
+     * @Serializer\IgnoreNull()
      */
     private $day;
 
@@ -35,6 +38,7 @@ class ForecastDay
      *
      * @Serializer\Property("astro")
      * @Serializer\Type("Apixu\Response\Forecast\Astro")
+     * @Serializer\IgnoreNull()
      */
     private $astro;
 
@@ -43,6 +47,7 @@ class ForecastDay
      *
      * @Serializer\Property("hour")
      * @Serializer\Type("collection[Apixu\Response\Forecast\Hour]")
+     * @Serializer\IgnoreNull()
      */
     private $hour;
 

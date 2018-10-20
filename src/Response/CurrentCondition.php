@@ -9,6 +9,7 @@ class CurrentCondition
      *
      * @Serializer\Property("text")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $text;
 
@@ -17,6 +18,7 @@ class CurrentCondition
      *
      * @Serializer\Property("icon")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $icon;
 
@@ -25,6 +27,7 @@ class CurrentCondition
      *
      * @Serializer\Property("code")
      * @Serializer\Type("int")
+     * @Serializer\IgnoreNull()
      */
     private $code;
 

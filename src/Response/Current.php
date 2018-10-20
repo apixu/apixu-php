@@ -9,6 +9,7 @@ class Current
      *
      * @Serializer\Property("last_updated_epoch")
      * @Serializer\Type("int")
+     * @Serializer\IgnoreNull()
      */
     private $lastUpdatedEpoch;
 
@@ -17,6 +18,7 @@ class Current
      *
      * @Serializer\Property("last_updated")
      * @Serializer\Type("DateTime", "Y-m-d H:i")
+     * @Serializer\IgnoreNull()
      */
     private $lastUpdated;
 
@@ -25,6 +27,7 @@ class Current
      *
      * @Serializer\Property("temp_c")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $tempCelsius;
 
@@ -33,6 +36,7 @@ class Current
      *
      * @Serializer\Property("temp_f")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $tempFahrenheit;
 
@@ -41,6 +45,7 @@ class Current
      *
      * @Serializer\Property("is_day")
      * @Serializer\Type("bool")
+     * @Serializer\IgnoreNull()
      */
     private $day;
 
@@ -49,6 +54,7 @@ class Current
      *
      * @Serializer\Property("condition")
      * @Serializer\Type("Apixu\Response\CurrentCondition")
+     * @Serializer\IgnoreNull()
      */
     private $condition;
 
@@ -57,6 +63,7 @@ class Current
      *
      * @Serializer\Property("wind_mph")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $windMPH;
 
@@ -65,6 +72,7 @@ class Current
      *
      * @Serializer\Property("wind_kph")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $windKPH;
 
@@ -73,6 +81,7 @@ class Current
      *
      * @Serializer\Property("wind_degree")
      * @Serializer\Type("int")
+     * @Serializer\IgnoreNull()
      */
     private $windDegree;
 
@@ -81,6 +90,7 @@ class Current
      *
      * @Serializer\Property("wind_dir")
      * @Serializer\Type("string")
+     * @Serializer\IgnoreNull()
      */
     private $windDirection;
 
@@ -89,6 +99,7 @@ class Current
      *
      * @Serializer\Property("pressure_mb")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $pressureMB;
 
@@ -97,6 +108,7 @@ class Current
      *
      * @Serializer\Property("pressure_in")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $pressureIN;
 
@@ -105,6 +117,7 @@ class Current
      *
      * @Serializer\Property("precip_mm")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $precipMM;
 
@@ -113,6 +126,7 @@ class Current
      *
      * @Serializer\Property("precip_in")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $precipIN;
 
@@ -121,6 +135,7 @@ class Current
      *
      * @Serializer\Property("humidity")
      * @Serializer\Type("int")
+     * @Serializer\IgnoreNull()
      */
     private $humidity;
 
@@ -129,6 +144,7 @@ class Current
      *
      * @Serializer\Property("cloud")
      * @Serializer\Type("int")
+     * @Serializer\IgnoreNull()
      */
     private $cloud;
 
@@ -137,6 +153,7 @@ class Current
      *
      * @Serializer\Property("feelslike_c")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $feelsLikeCelsius;
 
@@ -145,6 +162,7 @@ class Current
      *
      * @Serializer\Property("feelslike_f")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $feelsLikeFahrenheit;
 
@@ -153,6 +171,7 @@ class Current
      *
      * @Serializer\Property("vis_km")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $visKM;
 
@@ -161,6 +180,7 @@ class Current
      *
      * @Serializer\Property("vis_miles")
      * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
      */
     private $visMiles;
 
