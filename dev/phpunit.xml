@@ -1,0 +1,26 @@
+<phpunit
+        verbose="true"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        stopOnError="true"
+        stopOnFailure="true"
+        stopOnIncomplete="true"
+        stopOnSkipped="true"
+        stopOnRisky="true"
+        bootstrap="../vendor/autoload.php">
+        <logging>
+                <log type="coverage-html" target="../build/coverage" lowUpperBound="70" highLowerBound="90" />
+        </logging>
+        <filter>
+                <whitelist>
+                        <directory>../src/</directory>
+                </whitelist>
+        </filter>
+        <testsuites>
+                <testsuite name="all">
+                        <directory>../tests</directory>
+                </testsuite>
+        </testsuites>
+</phpunit>

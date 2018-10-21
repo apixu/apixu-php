@@ -1,0 +1,31 @@
+{
+    "name": "apixu/apixu-php",
+    "type": "library",
+    "description": "PHP library for Apixu Weather API",
+    "keywords": ["apixu", "weather"],
+    "homepage": "https://www.apixu.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrei Avram",
+            "email": "avramandrei@ymail.com",
+            "homepage": "https://www.andreiavram.ro/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "^6.2",
+        "andreiavrammsd/serializer": "^0.4"
+    },
+    "autoload": {
+        "psr-4" : {
+            "Apixu\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Apixu\\Tests\\": "tests/"
+        }
+    }
+}
