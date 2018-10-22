@@ -2,6 +2,9 @@
 
 PHP library for [Apixu Weather API](https://www.apixu.com/api.aspx)
 
+## Install
+composer require apixu/apixu-php
+
 ## Usage
 See the [examples](./examples).
 
