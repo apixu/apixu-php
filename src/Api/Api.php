@@ -7,6 +7,7 @@ use Apixu\Exception\ApixuException;
 use Apixu\Exception\ErrorException;
 use Apixu\Exception\InternalServerErrorException;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\StreamInterface;
 
 class Api implements ApiInterface
@@ -39,21 +40,27 @@ class Api implements ApiInterface
         $url = $this->getApiUrl($method, $params);
 
         try {
-            $res = $this->httpClient->request('GET', $url);
-            $status = $res->getStatusCode();
+            return $this->httpClient->request('GET', $url)->getBody();
+        } catch (ClientException $e) {
+            if ($e->getResponse() === null) {
+                throw new InternalServerErrorException(
+                    'Server Error',
+                    StatusCodes::INTERNAL_SERVER_ERROR
+                );
+            }
+
+            $status = $e->getResponse()->getStatusCode();
 
             if ($status >= StatusCodes::INTERNAL_SERVER_ERROR) {
                 throw new InternalServerErrorException('Server Error', $status);
             }
 
-            if ($status !== StatusCodes::OK) {
-                $response = json_decode($res->getBody()->getContents(), true);
-                throw new ErrorException($response['message'], $response['code']);
+            $response = json_decode($e->getResponse()->getBody()->getContents(), true);
+            if (!array_key_exists('error', $response)) {
+                throw new InternalServerErrorException('Server Error', $status);
             }
 
-            return $res->getBody();
-        } catch (ApixuException $e) {
-            throw $e;
+            throw new ErrorException($response['error']['message'], $response['error']['code']);
         } catch (\Exception $e) {
             throw new ApixuException($e->getMessage(), $e->getCode(), $e);
         }
