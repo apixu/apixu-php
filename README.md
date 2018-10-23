@@ -8,6 +8,10 @@ composer require apixu/apixu-php
 ## Usage
 See the [examples](./examples).
 
+## Integration with Frameworks
+* [Symfony](./examples/symfony)
+* [Laravel](./examples/laravel)
+
 ## Development
 
 * Requirements: Docker, Make

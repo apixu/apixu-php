@@ -1,0 +1,9 @@
+{
+
+  "require": {
+
+    "apixu/apixu-php": "^1.0"
+
+  }
+
+}
