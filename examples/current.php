@@ -7,7 +7,7 @@ use Apixu\Exception\ErrorException;
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 try {
-    $api = \Apixu\ApixuBuilder::instance()->setApiKey($_SERVER['APIXUKEY'])->build();
+    $api = \Apixu\Factory::create($_SERVER['APIXUKEY']);
 } catch (ApixuException $e) {
     die($e->getMessage());
 }

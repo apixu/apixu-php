@@ -2,24 +2,24 @@
 
 namespace Apixu\Tests;
 
-use Apixu\ApixuBuilder;
 use Apixu\ApixuInterface;
-use Apixu\Exception\ApixuException;
 use Apixu\Exception\ApiKeyMissingException;
+use Apixu\Exception\ApixuException;
+use Apixu\Factory;
 use PHPUnit\Framework\TestCase;
 
-class ApixuBuilderTest extends TestCase
+class FactoryTest extends TestCase
 {
-    public function testBuild()
+    public function testCreate()
     {
-        $apixu = ApixuBuilder::instance()->setApiKey('a')->build();
+        $apixu = Factory::create('apikey');
         $this->assertInstanceOf(ApixuInterface::class, $apixu);
     }
 
-    public function testBuildWithMissingApiKey()
+    public function testCreateWithMissingApiKey()
     {
         try {
-            ApixuBuilder::instance()->setApiKey(' ');
+            Factory::create(' ');
             $this->fail('No exception was thrown');
         } catch (\Exception $e) {
             $this->assertInstanceOf(ApixuException::class, $e);

@@ -10,7 +10,7 @@ use Apixu\Exception\ApixuException;
 use Apixu\Exception\ErrorException;
 use Apixu\Exception\InternalServerErrorException;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -40,9 +40,6 @@ class ApiTest extends TestCase
         $response->expects($this->once())
             ->method('getBody')
             ->willReturn($body);
-        $response->expects($this->once())
-            ->method('getStatusCode')
-            ->willReturn(StatusCodes::OK);
 
         $method = 'method';
         $query = 'query';
@@ -73,9 +70,6 @@ class ApiTest extends TestCase
         $response->expects($this->once())
             ->method('getBody')
             ->willReturn($body);
-        $response->expects($this->once())
-            ->method('getStatusCode')
-            ->willReturn(StatusCodes::OK);
 
         $url = 'https://url';
         $this->httpClient
@@ -91,16 +85,17 @@ class ApiTest extends TestCase
     public function testCallWithInternalServerError()
     {
         $response = $this->createMock(ResponseInterface::class);
-        $response->expects($this->once())
+        $response->expects($this->exactly(2))
             ->method('getStatusCode')
             ->willReturn(StatusCodes::INTERNAL_SERVER_ERROR);
 
+        $exception = new ClientException('message', new Request('', ''), $response);
         $url = 'https://url';
         $this->httpClient
             ->expects($this->once())
             ->method('request')
             ->with('GET', $url)
-            ->willReturn($response);
+            ->will($this->throwException($exception));
 
         try {
             $this->api->call($url);
@@ -113,7 +108,7 @@ class ApiTest extends TestCase
 
     public function testCallWithGeneralError()
     {
-        $responseString = '{"message": "bad request", "code": 123}';
+        $responseString = '{"error": {"message": "bad request", "code": 123}}';
 
         $body = $this->createMock(StreamInterface::class);
         $body->expects($this->once())
@@ -124,16 +119,17 @@ class ApiTest extends TestCase
         $response->expects($this->once())
             ->method('getBody')
             ->willReturn($body);
-        $response->expects($this->once())
+        $response->expects($this->exactly(2))
             ->method('getStatusCode')
             ->willReturn(StatusCodes::BAD_REQUEST);
 
+        $exception = new ClientException('message', new Request('', ''), $response);
         $url = 'https://url';
         $this->httpClient
             ->expects($this->once())
             ->method('request')
             ->with('GET', $url)
-            ->willReturn($response);
+            ->will($this->throwException($exception));
 
         try {
             $this->api->call($url);
@@ -146,9 +142,63 @@ class ApiTest extends TestCase
         }
     }
 
-    public function testCallWithHttpClientException()
+    public function testCallWithInvalidErrorResponseBody()
     {
-        $exception = new BadResponseException('message', new Request('', ''));
+        $responseString = '{}';
+
+        $body = $this->createMock(StreamInterface::class);
+        $body->expects($this->once())
+            ->method('getContents')
+            ->willReturn($responseString);
+
+        $response = $this->createMock(ResponseInterface::class);
+        $response->expects($this->once())
+            ->method('getBody')
+            ->willReturn($body);
+        $response->expects($this->exactly(2))
+            ->method('getStatusCode')
+            ->willReturn(StatusCodes::BAD_REQUEST);
+
+        $exception = new ClientException('message', new Request('', ''), $response);
+        $url = 'https://url';
+        $this->httpClient
+            ->expects($this->once())
+            ->method('request')
+            ->with('GET', $url)
+            ->will($this->throwException($exception));
+
+        try {
+            $this->api->call($url);
+            $this->fail('No exception was thrown');
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(ApixuException::class, $e);
+            $this->assertInstanceOf(InternalServerErrorException::class, $e);
+        }
+    }
+
+    public function testCallWithEmptyResponseBody()
+    {
+        $response = null;
+        $exception = new ClientException('message', new Request('', ''), $response);
+        $url = 'https://url';
+        $this->httpClient
+            ->expects($this->once())
+            ->method('request')
+            ->with('GET', $url)
+            ->will($this->throwException($exception));
+
+        try {
+            $this->api->call($url);
+            $this->fail('No exception was thrown');
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(ApixuException::class, $e);
+            $this->assertInstanceOf(InternalServerErrorException::class, $e);
+        }
+    }
+
+    public function testCallWithHttpClientAnyException()
+    {
+        $exception = new \Exception();
         $url = 'https://url';
         $this->httpClient
             ->expects($this->once())
