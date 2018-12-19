@@ -13,7 +13,6 @@ See the [examples](./examples).
 * [Laravel](./examples/laravel)
 
 ## Development
-
 * Requirements: Docker, Make
 * Install: make build && make install
 * Run QA tools: make

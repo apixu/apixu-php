@@ -1,11 +1,15 @@
-.PHONY: build
+.PHONY: build install qa run clean
 
-IMAGE := apixu/apixu-php
+ifndef PHPVERSION
+PHPVERSION=7.2
+endif
+
+IMAGE := apixu/apixu-php:php$(PHPVERSION)
 
 all: qa
 
 build:
-	docker build . -f dev/Dockerfile -t $(IMAGE)
+	docker build --build-arg PHPVERSION=$(PHPVERSION) . -f dev/Dockerfile -t $(IMAGE)
 
 install:
 	docker run -ti --rm -v $(CURDIR):/src $(IMAGE) composer install
