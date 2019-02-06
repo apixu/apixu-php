@@ -17,7 +17,7 @@ build:
 	docker build --build-arg PHPVERSION=$(PHPVERSION) --build-arg XDEBUG=$(XDEBUG) . -f dev/Dockerfile -t $(IMAGE)
 
 install:
-	docker run -ti --rm -v $(CURDIR):/src $(IMAGE) composer install --no-dev
+	docker run -ti --rm -v $(CURDIR):/src $(IMAGE) composer install
 
 qa:
 	docker run -ti --rm -v $(CURDIR):/src $(IMAGE) ./dev/qa.sh

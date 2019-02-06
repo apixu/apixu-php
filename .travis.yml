@@ -7,9 +7,10 @@ php:
 
 before_script:
   - phpenv config-add dev/dev.ini
+  - composer global require hirak/prestissimo
 
 install:
-  - composer global require hirak/prestissimo
+  - composer install
 
 script:
   - ./dev/qa.sh
