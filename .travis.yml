@@ -1,0 +1,18 @@
+language: php
+
+php:
+  - '7.1'
+  - '7.2'
+  - '7.3'
+
+before_install:
+  - composer global require hirak/prestissimo
+
+install:
+  - composer install
+
+before_script:
+  - phpenv config-add dev/dev.ini
+
+script:
+  - ./dev/qa.sh
