@@ -13,9 +13,6 @@ RUN curl -s http://getcomposer.org/installer | php && \
 
 COPY dev/dev.ini /usr/local/etc/php/conf.d/z-dev.ini
 
-WORKDIR /qa
-COPY dev/composer.json composer.json
 RUN composer global require hirak/prestissimo
-RUN composer install
 
 WORKDIR /src
