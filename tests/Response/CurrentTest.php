@@ -39,6 +39,9 @@ class CurrentTest extends AbstractGettersTest
             'feelsLikeFahrenheit' => 93.0,
             'visKM' => 84.0,
             'visMiles' => 37.0,
+            'uV' => 2.0,
+            'gustMph' => 16.1,
+            'gustKph' => 25.9,
         ];
 
         $vars2 = [
@@ -62,6 +65,9 @@ class CurrentTest extends AbstractGettersTest
             'feelsLikeFahrenheit' => null,
             'visKM' => null,
             'visMiles' => null,
+            'uV' => null,
+            'gustMph' => null,
+            'gustKph' => null,
         ];
 
         return [

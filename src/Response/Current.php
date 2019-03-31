@@ -185,6 +185,33 @@ class Current
     private $visMiles;
 
     /**
+     * @var float|null
+     *
+     * @Serializer\Property("uv")
+     * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
+     */
+    private $uV;
+
+    /**
+     * @var float|null
+     *
+     * @Serializer\Property("gust_mph")
+     * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
+     */
+    private $gustMph;
+
+    /**
+     * @var float|null
+     *
+     * @Serializer\Property("gust_kph")
+     * @Serializer\Type("float")
+     * @Serializer\IgnoreNull()
+     */
+    private $gustKph;
+
+    /**
      * @return int|null
      */
     public function getLastUpdatedEpoch() : ?int
@@ -342,5 +369,29 @@ class Current
     public function getVisMiles() : ?float
     {
         return $this->visMiles;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getUV() : ?float
+    {
+        return $this->uV;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getGustMph() : ?float
+    {
+        return $this->gustMph;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getGustKph() : ?float
+    {
+        return $this->gustKph;
     }
 }
