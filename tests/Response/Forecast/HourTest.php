@@ -50,7 +50,8 @@ class HourTest extends AbstractGettersTest
             'chanceOfSnow' => '0%',
             'visKM' => 17.0,
             'visMiles' => 42.0,
-
+            'gustMph' => 15.7,
+            'gustKph' => 25.2,
         ];
 
         $vars2 = [
@@ -84,7 +85,8 @@ class HourTest extends AbstractGettersTest
             'chanceOfSnow' => null,
             'visKM' => null,
             'visMiles' => null,
-
+            'gustMph' => null,
+            'gustKph' => null,
         ];
 
         return [

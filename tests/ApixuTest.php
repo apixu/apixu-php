@@ -153,7 +153,7 @@ class ApixuTest extends TestCase
         $this->api
             ->expects($this->once())
             ->method('call')
-            ->with('forecast', ['q' => 'query', 'days' => 1,])
+            ->with('forecast', ['q' => 'query', 'days' => 1, 'hour' => 12,])
             ->willReturn($response);
 
         $this->serializer->expects($this->once())
@@ -162,7 +162,7 @@ class ApixuTest extends TestCase
             ->willReturn($expectedObject);
 
         /** @var Forecast $forecast */
-        $forecast = $this->apixu->forecast('query', 1);
+        $forecast = $this->apixu->forecast('query', 1, 12);
         $this->assertEquals($expectedObject, $forecast);
     }
 

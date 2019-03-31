@@ -70,10 +70,19 @@ class Apixu implements ApixuInterface
     /**
      * {@inheritdoc}
      */
-    public function forecast(string $query, int $days) : Forecast
+    public function forecast(string $query, int $days, int $hour = null) : Forecast
     {
         $this->validateQuery($query);
-        $response = $this->api->call('forecast', ['q' => $query, 'days' => $days]);
+
+        $params = [
+            'q' => $query,
+            'days' => $days,
+        ];
+        if ($hour !== null) {
+            $params['hour'] = $hour;
+        }
+
+        $response = $this->api->call('forecast', $params);
 
         return $this->getResponse($response, Forecast::class);
     }
