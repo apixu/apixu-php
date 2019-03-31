@@ -11,6 +11,9 @@ use Apixu\Response\Search;
 
 interface ApixuInterface
 {
+    /**
+     * @deprecated
+     */
     const HISTORY_SINCE_FORMAT = 'Y-m-d';
 
     /**
@@ -44,18 +47,20 @@ interface ApixuInterface
      *
      * @param string $query
      * @param int $days
+     * @param int|null $hour Hourly forecast available for paid license only
      * @return Forecast
      * @throws ApixuException
      */
-    public function forecast(string $query, int $days) : Forecast;
+    public function forecast(string $query, int $days, int $hour = null) : Forecast;
 
     /**
      * Historical weather information for a city and a date starting 2015-01-01
      *
      * @param string $query
      * @param \DateTime $since
+     * @param \DateTime|null $until Range history available for paid license only
      * @return History
      * @throws ApixuException
      */
-    public function history(string $query, \DateTime $since) : History;
+    public function history(string $query, \DateTime $since, \DateTime $until = null) : History;
 }

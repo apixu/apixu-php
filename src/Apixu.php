@@ -25,6 +25,11 @@ class Apixu implements ApixuInterface
     private $serializer;
 
     /**
+     * @var string
+     */
+    private static $historyDateFormat = 'Y-m-d';
+
+    /**
      * @param ApiInterface $api
      * @param SerializerInterface $serializer
      */
@@ -70,10 +75,19 @@ class Apixu implements ApixuInterface
     /**
      * {@inheritdoc}
      */
-    public function forecast(string $query, int $days) : Forecast
+    public function forecast(string $query, int $days, int $hour = null) : Forecast
     {
         $this->validateQuery($query);
-        $response = $this->api->call('forecast', ['q' => $query, 'days' => $days]);
+
+        $params = [
+            'q' => $query,
+            'days' => $days,
+        ];
+        if ($hour !== null) {
+            $params['hour'] = $hour;
+        }
+
+        $response = $this->api->call('forecast', $params);
 
         return $this->getResponse($response, Forecast::class);
     }
@@ -81,13 +95,19 @@ class Apixu implements ApixuInterface
     /**
      * {@inheritdoc}
      */
-    public function history(string $query, \DateTime $since) : History
+    public function history(string $query, \DateTime $since, \DateTime $until = null) : History
     {
         $this->validateQuery($query);
-        $response = $this->api->call(
-            'history',
-            ['q' => $query, 'dt' => $since->format(self::HISTORY_SINCE_FORMAT)]
-        );
+
+        $params = [
+            'q' => $query,
+            'dt' => $since->format(self::$historyDateFormat),
+        ];
+        if ($until !== null) {
+            $params['end_dt'] = $until->format(self::$historyDateFormat);
+        }
+
+        $response = $this->api->call('history', $params);
 
         return $this->getResponse($response, History::class);
     }

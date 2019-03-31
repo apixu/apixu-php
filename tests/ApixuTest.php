@@ -153,7 +153,7 @@ class ApixuTest extends TestCase
         $this->api
             ->expects($this->once())
             ->method('call')
-            ->with('forecast', ['q' => 'query', 'days' => 1,])
+            ->with('forecast', ['q' => 'query', 'days' => 1, 'hour' => 12,])
             ->willReturn($response);
 
         $this->serializer->expects($this->once())
@@ -162,7 +162,7 @@ class ApixuTest extends TestCase
             ->willReturn($expectedObject);
 
         /** @var Forecast $forecast */
-        $forecast = $this->apixu->forecast('query', 1);
+        $forecast = $this->apixu->forecast('query', 1, 12);
         $this->assertEquals($expectedObject, $forecast);
     }
 
@@ -178,11 +178,17 @@ class ApixuTest extends TestCase
 
         $query = 'query';
         $since = new \DateTime();
+        $until = new \DateTime();
 
         $this->api
             ->expects($this->once())
             ->method('call')
-            ->with('history', ['q' => $query, 'dt' => $since->format(Apixu::HISTORY_SINCE_FORMAT),])
+            ->with(
+                'history', [
+                'q' => $query,
+                'dt' => $since->format('Y-m-d'),
+                'end_dt' => $until->format('Y-m-d'),
+            ])
             ->willReturn($response);
 
         $this->serializer->expects($this->once())
@@ -191,7 +197,7 @@ class ApixuTest extends TestCase
             ->willReturn($expectedObject);
 
         /** @var History $forecast */
-        $forecast = $this->apixu->history($query, $since);
+        $forecast = $this->apixu->history($query, $since, $until);
         $this->assertEquals($expectedObject, $forecast);
     }
 }

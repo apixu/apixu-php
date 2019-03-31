@@ -27,7 +27,7 @@ For example, a class with city/state/zip fields could instead have one Address f
         </description>
         <priority>3</priority>
         <properties>
-            <property name="maxfields" description="The field count reporting threshold" value="30"/>
+            <property name="maxfields" description="The field count reporting threshold" value="32"/>
         </properties>
     </rule>
 

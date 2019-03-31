@@ -18,5 +18,5 @@ See the [examples](./examples).
 * Requirements: Docker, Make
 * Install: make build && make install
 * Run QA tools: make
-* Work inside container: make run
+* Work inside container: make run APIXUKEY=yourapikey
 * See [Makefile](./Makefile)
