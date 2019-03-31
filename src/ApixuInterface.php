@@ -11,6 +11,9 @@ use Apixu\Response\Search;
 
 interface ApixuInterface
 {
+    /**
+     * @deprecated
+     */
     const HISTORY_SINCE_FORMAT = 'Y-m-d';
 
     /**
@@ -55,8 +58,9 @@ interface ApixuInterface
      *
      * @param string $query
      * @param \DateTime $since
+     * @param \DateTime|null $until Range history available for paid license only
      * @return History
      * @throws ApixuException
      */
-    public function history(string $query, \DateTime $since) : History;
+    public function history(string $query, \DateTime $since, \DateTime $until = null) : History;
 }

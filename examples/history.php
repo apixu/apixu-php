@@ -15,9 +15,10 @@ try {
 $q = 'London';
 $since = new \DateTime();
 $since->modify('-1 day');
+$until = new \DateTime(); // paid license only
 
 try {
-    $history = $api->history($q, $since);
+    $history = $api->history($q, $since, $until);
 } catch (InternalServerErrorException $e) {
     die($e->getMessage());
 } catch (ErrorException $e) {
