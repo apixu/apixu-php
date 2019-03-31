@@ -1,7 +1,7 @@
 .PHONY: build install qa run clean
 
 ifndef PHPVERSION
-PHPVERSION=7.2
+PHPVERSION=7.3
 endif
 
 IMAGE := apixu/apixu-php:php$(PHPVERSION)
@@ -18,7 +18,7 @@ qa:
 	docker run -ti --rm -v $(CURDIR):/src $(IMAGE) ./dev/qa.sh
 
 run:
-	docker run -ti --rm -v $(CURDIR):/src $(IMAGE) sh
+	docker run -ti --rm -v $(CURDIR):/src -e APIXUKEY=$(APIXUKEY) $(IMAGE) sh
 
 clean:
 	docker rmi $(IMAGE)
