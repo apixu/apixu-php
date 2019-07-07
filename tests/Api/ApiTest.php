@@ -89,7 +89,7 @@ class ApiTest extends TestCase
             ->method('getStatusCode')
             ->willReturn(StatusCodes::INTERNAL_SERVER_ERROR);
 
-        $exception = new ClientException('message', new Request('', ''), $response);
+        $exception = new ClientException('message', new Request('GET', ''), $response);
         $url = 'https://url';
         $this->httpClient
             ->expects($this->once())
@@ -123,7 +123,7 @@ class ApiTest extends TestCase
             ->method('getStatusCode')
             ->willReturn(StatusCodes::BAD_REQUEST);
 
-        $exception = new ClientException('message', new Request('', ''), $response);
+        $exception = new ClientException('message', new Request('GET', ''), $response);
         $url = 'https://url';
         $this->httpClient
             ->expects($this->once())
@@ -159,7 +159,7 @@ class ApiTest extends TestCase
             ->method('getStatusCode')
             ->willReturn(StatusCodes::BAD_REQUEST);
 
-        $exception = new ClientException('message', new Request('', ''), $response);
+        $exception = new ClientException('message', new Request('GET', ''), $response);
         $url = 'https://url';
         $this->httpClient
             ->expects($this->once())
@@ -179,7 +179,7 @@ class ApiTest extends TestCase
     public function testCallWithEmptyResponseBody()
     {
         $response = null;
-        $exception = new ClientException('message', new Request('', ''), $response);
+        $exception = new ClientException('message', new Request('GET', ''), $response);
         $url = 'https://url';
         $this->httpClient
             ->expects($this->once())

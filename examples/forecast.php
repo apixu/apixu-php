@@ -7,7 +7,8 @@ use Apixu\Exception\ErrorException;
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 try {
-    $api = \Apixu\Factory::create($_SERVER['APIXUKEY']);
+    $language = 'ru';
+    $api = \Apixu\Factory::create($_SERVER['APIXUKEY'], $language);
 } catch (ApixuException $e) {
     die($e->getMessage());
 }

@@ -5,6 +5,7 @@ namespace Apixu\Tests;
 use Apixu\ApixuInterface;
 use Apixu\Exception\ApiKeyMissingException;
 use Apixu\Exception\ApixuException;
+use Apixu\Exception\LanguageMissingException;
 use Apixu\Factory;
 use PHPUnit\Framework\TestCase;
 
@@ -24,6 +25,17 @@ class FactoryTest extends TestCase
         } catch (\Exception $e) {
             $this->assertInstanceOf(ApixuException::class, $e);
             $this->assertInstanceOf(ApiKeyMissingException::class, $e);
+        }
+    }
+
+    public function testCreateWithMissingLanguage()
+    {
+        try {
+            Factory::create('apikey', ' ');
+            $this->fail('No exception was thrown');
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(ApixuException::class, $e);
+            $this->assertInstanceOf(LanguageMissingException::class, $e);
         }
     }
 }
