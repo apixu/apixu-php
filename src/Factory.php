@@ -8,12 +8,19 @@ final class Factory
      * Creates Apixu instance by api key
      *
      * @param string $apiKey
+     * @param null|string $language
      * @return \Apixu\ApixuInterface
      * @throws \Apixu\Exception\ApiKeyMissingException
      * @throws \Serializer\Format\UnknownFormatException
      */
-    public static function create(string $apiKey) : ApixuInterface
+    public static function create(string $apiKey, string $language = null) : ApixuInterface
     {
-        return ApixuBuilder::instance()->setApiKey($apiKey)->build();
+        $builder = ApixuBuilder::instance()->setApiKey($apiKey);
+
+        if ($language !== null) {
+            $builder->setLanguage($language);
+        }
+
+        return $builder->build();
     }
 }

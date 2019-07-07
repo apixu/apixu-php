@@ -25,6 +25,11 @@ class Apixu implements ApixuInterface
     private $serializer;
 
     /**
+     * @var null|string
+     */
+    private $language;
+
+    /**
      * @var string
      */
     private static $historyDateFormat = 'Y-m-d';
@@ -32,11 +37,13 @@ class Apixu implements ApixuInterface
     /**
      * @param ApiInterface $api
      * @param SerializerInterface $serializer
+     * @param string $language
      */
-    public function __construct(ApiInterface $api, SerializerInterface $serializer)
+    public function __construct(ApiInterface $api, SerializerInterface $serializer, string $language = null)
     {
         $this->api = $api;
         $this->serializer = $serializer;
+        $this->language = $language;
     }
 
     /**
@@ -56,7 +63,15 @@ class Apixu implements ApixuInterface
     public function current(string $query) : CurrentWeather
     {
         $this->validateQuery($query);
-        $response = $this->api->call('current', ['q' => $query]);
+
+        $params = [
+            'q' => $query,
+        ];
+        if ($this->language !== null) {
+            $params['lang'] = $this->language;
+        }
+
+        $response = $this->api->call('current', $params);
 
         return $this->getResponse($response, CurrentWeather::class);
     }
@@ -86,6 +101,9 @@ class Apixu implements ApixuInterface
         if ($hour !== null) {
             $params['hour'] = $hour;
         }
+        if ($this->language !== null) {
+            $params['lang'] = $this->language;
+        }
 
         $response = $this->api->call('forecast', $params);
 
@@ -105,6 +123,9 @@ class Apixu implements ApixuInterface
         ];
         if ($until !== null) {
             $params['end_dt'] = $until->format(self::$historyDateFormat);
+        }
+        if ($this->language !== null) {
+            $params['lang'] = $this->language;
         }
 
         $response = $this->api->call('history', $params);

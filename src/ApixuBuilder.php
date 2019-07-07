@@ -4,6 +4,7 @@ namespace Apixu;
 
 use Apixu\Api\Api;
 use Apixu\Exception\ApiKeyMissingException;
+use Apixu\Exception\LanguageMissingException;
 use GuzzleHttp\Client;
 use Serializer\Format\UnknownFormatException;
 use Serializer\SerializerBuilder;
@@ -14,6 +15,11 @@ final class ApixuBuilder
      * @var string
      */
     private $apiKey;
+
+    /**
+     * @var string
+     */
+    private $language;
 
     /**
      * @return ApixuBuilder
@@ -39,6 +45,22 @@ final class ApixuBuilder
         return $this;
     }
 
+  /**
+     * @param string $language
+     * @return ApixuBuilder
+     * @throws LanguageMissingException
+     */
+    public function setLanguage(string $language) : ApixuBuilder
+    {
+        if (trim($language) === '') {
+            throw new LanguageMissingException('Language code not set.');
+        }
+
+        $this->language = $language;
+
+        return $this;
+    }
+
     /**
      * @return ApixuInterface
      * @throws UnknownFormatException
@@ -55,6 +77,6 @@ final class ApixuBuilder
 
         $api = new Api($this->apiKey, $httpClient);
 
-        return new Apixu($api, $serializer);
+        return new Apixu($api, $serializer, $this->language);
     }
 }

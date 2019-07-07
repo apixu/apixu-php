@@ -27,12 +27,13 @@ class ApixuTest extends TestCase
 
     private $api;
     private $serializer;
+    private $language = 'en';
 
     protected function setUp()
     {
         $this->api = $this->createMock(ApiInterface::class);
         $this->serializer = $this->createMock(SerializerInterface::class);
-        $this->apixu = new Apixu($this->api, $this->serializer);
+        $this->apixu = new Apixu($this->api, $this->serializer, $this->language);
     }
 
     public function testConditions()
@@ -77,7 +78,10 @@ class ApixuTest extends TestCase
         $this->api
             ->expects($this->once())
             ->method('call')
-            ->with('current', ['q' => 'query'])
+            ->with('current', [
+                'q' => 'query',
+                'lang' => $this->language,
+            ])
             ->willReturn($response);
 
         $this->serializer->expects($this->once())
@@ -153,7 +157,12 @@ class ApixuTest extends TestCase
         $this->api
             ->expects($this->once())
             ->method('call')
-            ->with('forecast', ['q' => 'query', 'days' => 1, 'hour' => 12,])
+            ->with('forecast', [
+                'q' => 'query',
+                'days' => 1,
+                'hour' => 12,
+                'lang' => $this->language,
+            ])
             ->willReturn($response);
 
         $this->serializer->expects($this->once())
@@ -188,6 +197,7 @@ class ApixuTest extends TestCase
                 'q' => $query,
                 'dt' => $since->format('Y-m-d'),
                 'end_dt' => $until->format('Y-m-d'),
+                'lang' => $this->language,
             ])
             ->willReturn($response);
 
