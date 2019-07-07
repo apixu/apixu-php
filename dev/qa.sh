@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 VENDOR=./vendor
 
 ${VENDOR}/phpunit/phpunit/phpunit -c phpunit.xml
